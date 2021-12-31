@@ -13,8 +13,8 @@ public class Main {
 		Container cont = f.getContentPane();
 		cont.setLayout(new BorderLayout());
 		
-		Main_Panel mgp= new Main_Panel();
-		cont.add(mgp, BorderLayout.CENTER);
+		Main_Panel mp = new Main_Panel();
+		cont.add(mp, BorderLayout.CENTER);
 		
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		 f.setVisible(true); 
