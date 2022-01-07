@@ -30,7 +30,7 @@ class Main_Panel extends JPanel{
 	      /**  constructor */
 	  public Main_Panel() {
 		
-		bg = new ImageIcon("images/download.jpg");
+		bg = new ImageIcon("images/MBackground.jpg");
 	    setLayout(null);
 	    btn1 = new JButton("Play");
 	    btn1.setLocation (750, 180);
