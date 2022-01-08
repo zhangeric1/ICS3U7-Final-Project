@@ -1,6 +1,9 @@
-
-public class Main1 {
+/**
+ * This is our Main class where everything begins. It calls an instance of TitleScreen and the game starts 
+ */
+public class Main {
 	public static void main(String[] args) {
-		TitleScreen titleScreen = new TitleScreen("Title");
+		//create new instance of TitleScreen
+		new TitleScreen("Whack-A-Mole");
 	}
 }
