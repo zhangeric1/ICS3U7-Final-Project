@@ -1,25 +1,3 @@
-import java.awt.*;
-import javax.swing.*;
-
-@SuppressWarnings("serial")
-public abstract class ScreenFrame extends JFrame{
-
-	//Constructor: Defines state/behavior that all child frames will inherit
-	public ScreenFrame(String title) {
-		super(title);
-		this.setSize(1000, 800);
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
-	}
-	
-	/**
-	 * This method creates a custom JButton
-	 * @param text Text to be put on button
-	 * @param x X coordinate of button
-	 * @param y Y coordinate of button
-	 * @param width Width of button
-	 * @param height Height of button
 /**
  * This class is a general format for all screens (which will be JFames) in our game. For example, it sets
  * a definite size, default close operation, etc. It also contains general methods for creating custom JButtons
@@ -96,5 +74,5 @@ public abstract class ScreenFrame extends JFrame{
 		label.setFont(font);
 		return label;
 	}//end of addCustomLabel method
+	
 }
-
