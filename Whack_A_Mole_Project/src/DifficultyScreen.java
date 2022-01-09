@@ -59,7 +59,7 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 			
 		}
 		else if(e.getSource() == btn4) {
-			new NumOfPlayersScreen("Back");
+			new MenuScreen("Back");
 			this.dispose();
 		}
 
