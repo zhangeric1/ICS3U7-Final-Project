@@ -8,97 +8,83 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class MenuScreen extends ScreenFrame implements ActionListener{
-	//Instance variables
+	//Instance variables//background image of menu screen
 	private ImageIcon bg;
-	private JButton btn1 ,btn2, btn3, btn4;
-	//PaintPanel canvas = new PaintPanel(); //all components are put on a PaintPanel which holds the background image but it doesn't work
-	
-	private JLabel bgLabel;
+	private JButton jbtPlay ,jbtInstructions, jbtScores, jbtExit;
+	private PaintPanel canvas; //all components are put on a PaintPanel which holds the background image
+	private JLabel heading;
 	
 	/**  constructor */
 	MenuScreen(String title){
 		super(title);
 		
-		//This block of code is for setting an image in the screen (I do not know how to set a background image)
+		//set a background image
 		bg = new ImageIcon("images/mole1.jpg");
-		bgLabel = addCustomLabel("Welcome to Whack-A-Mole!", Color.black, new Font("MV Boli", Font.BOLD, 50));
-		bgLabel.setIcon(bg);
-		bgLabel.setHorizontalTextPosition(JLabel.CENTER);
-		bgLabel.setVerticalTextPosition(JLabel.TOP);
-		bgLabel.setIconTextGap(150);
-		this.add(bgLabel);
-		bgLabel.setBounds(50, 0, this.getWidth() - 1, this.getHeight() - 1 );
-		this.getContentPane().setBackground(Color.lightGray);
+		//instantiate canvas and set null layout manager of canvas so we can manually place buttons
+		canvas = new PaintPanel();
+		canvas.setLayout(null);
+		this.add(canvas);
 		
-		//This code was to create a PaintPanel which I made at the bottom of the code but it doesn't work for some reason
-		//canvas = new PaintPanel();
-		//this.add(canvas, BorderLayout.CENTER);
-		//canvas.setLayout(null);
-		
-		//set null layout manager ofr MenuScreen so we can manually place buttons
-		this.setLayout(null);	
+		//add a custom label for the heading
+		canvas.add(heading = addCustomLabel("Welcome to Whack-A-Mole!", Color.black, new Font("Comic Sans MS", Font.BOLD, 60)));
+		heading.setBounds(50, 25, 900, 150);
 		
 		//add the Play button
-		btn1 = addCustomButton("Play", 750, 180, 200, 80, Color.blue, Color.green, new Font("Comic Sans", Font.PLAIN, 25));
-		btn1.addActionListener(this);
-		add(btn1);
+		jbtPlay = addCustomButton("Play", 750, 180, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
+		jbtPlay.addActionListener(this);
+		canvas.add(jbtPlay);
 		
 		//add the Instructions button
-		btn2 = addCustomButton("Instructions", 750, 300, 200, 80, Color.blue, Color.green, new Font("Comic Sans", Font.PLAIN, 25));
-		btn2.addActionListener(this);
-		add(btn2);
+		jbtInstructions = addCustomButton("Instructions", 750, 300, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
+		jbtInstructions.addActionListener(this);
+		canvas.add(jbtInstructions);
 
 		//add the Highscores button
-		btn3 = addCustomButton("Highscores", 750, 420, 200, 80, Color.blue, Color.green, new Font("Comic Sans", Font.PLAIN, 25));
-		btn3.addActionListener(this);
-		add(btn3);
+		jbtScores = addCustomButton("Highscores", 750, 420, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
+		jbtScores.addActionListener(this);
+		canvas.add(jbtScores);
 
 		//add the Exit button
-		btn4 = addCustomButton("Exit", 750, 540, 200, 80, Color.blue, Color.green, new Font("Comic Sans", Font.PLAIN, 25));
-		btn4.addActionListener(this);
-		add(btn4);
+		jbtExit = addCustomButton("Exit", 750, 540, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
+		jbtExit.addActionListener(this);
+		canvas.add(jbtExit);
 		
 	}
 
+	/**
+	 * This method is implemented from the ActionListener interface. Each button click decides a different scenario
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//different scenarios for each button
-		if(e.getSource() == btn1) {
-			new DifficultyScreen("Play");
-			this.dispose();
-		}
-		else if(e.getSource() == btn2) {
+		if(e.getSource() == jbtPlay) {
 			
 		}
-		else if(e.getSource() == btn3) {
+		else if(e.getSource() == jbtInstructions) {
+			
+		}
+		else if(e.getSource() == jbtScores) {
 			//create new instance of ScoreScreen
 			new ScoreScreen("High Scores");
 			this.dispose(); //get rid of current JFrame
 		}
 		//exit button exits the program
-		else if(e.getSource() == btn4) {
+		else if(e.getSource() == jbtExit) {
 			//exit the game
 			this.dispose();
 		}
 	}
 	
-	//This is a class that uses paintComponent to make a background image but it doesn't work for some reason
-	//What I did was make an instance of this PaintPanel, then add everything on to it (buttons, etc) but it doesn't work
-	//So I deleted the code which is why you only see it here
-	/*class PaintPanel extends JPanel{
+	/*
+	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
+	 * PaintPanel is added to the JFrame.
+	 */
+	class PaintPanel extends JPanel{
 		protected void paintComponent(Graphics g){
-			super.paintComponent(g);
+			super.paintComponent(g); //override the paintComponent method
+			//draw the background image
 			g.drawImage(bg.getImage(),0,0,this.getWidth(),this.getHeight(),null);
 		}
-	}*/
-	
-	//I tried something different here I found online but it still doesn't work
-	/*
-	class PaintPanel extends JPanel{
-		public void paint(Graphics g){
-			Graphics2D g2D = (Graphics2D) g;
-			g2D.drawImage(bg.getImage(),0,0,this.getWidth(),this.getHeight(),null);
-		}
-	}*/
+	}
 
 }
