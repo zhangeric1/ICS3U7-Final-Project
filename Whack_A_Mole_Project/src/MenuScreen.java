@@ -64,7 +64,8 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		//different scenarios for each button
 		if(e.getSource() == btn1) {
-			
+			new DifficultyScreen("Play");
+			this.dispose();
 		}
 		else if(e.getSource() == btn2) {
 			
