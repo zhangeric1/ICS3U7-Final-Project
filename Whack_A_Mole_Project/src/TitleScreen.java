@@ -1,5 +1,4 @@
-/**
- * This class is the Title Screen of our game. It has information on our project name, team members, teacher,
+* This class is the Title Screen of our game. It has information on our project name, team members, teacher,
  * date, and course code. It also has a button to transport the user to the menu screen. This screen cannot be
  * returned to and only displays once every game.
  */
@@ -64,3 +63,4 @@ public class TitleScreen extends ScreenFrame implements ActionListener{
 	}
 	
 }
+
