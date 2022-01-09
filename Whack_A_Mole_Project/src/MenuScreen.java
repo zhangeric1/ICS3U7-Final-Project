@@ -58,7 +58,9 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		//different scenarios for each button
 		if(e.getSource() == jbtPlay) {
-			
+			//create new instance of DifficultyScreen
+			new DifficultyScreen("Difficulty Selection");
+			this.dispose();
 		}
 		else if(e.getSource() == jbtInstructions) {
 			
