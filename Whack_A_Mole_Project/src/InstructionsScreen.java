@@ -1,5 +1,4 @@
-/**
- * This class is the Instructions screen. It has information on controls, game modes, and over all game utility.
+* This class is the Instructions screen. It has information on controls, game modes, and over all game utility.
  * A button allows users to return to the main menu.
  */
 import java.awt.*;
