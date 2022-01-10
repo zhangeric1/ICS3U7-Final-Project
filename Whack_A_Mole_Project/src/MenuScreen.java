@@ -1,5 +1,4 @@
-/**
- * This class is the menu screen of our game. It has 4 buttons that perform different actions (exiting, commencing gameplay, etc.).
+* This class is the menu screen of our game. It has 4 buttons that perform different actions (exiting, commencing gameplay, etc.).
  */
 import java.awt.*;
 import java.awt.event.*;
@@ -8,51 +7,57 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class MenuScreen extends ScreenFrame implements ActionListener{
-	//Instance variables//background image of menu screen
-	private ImageIcon bg;
-	private JButton jbtPlay ,jbtInstructions, jbtScores, jbtExit;
+	//Instance variables
+	private ImageIcon bg, bgGif; //background image of menu screen and the background gif that will be put on labelGif
+	private JButton jbtPlay ,jbtInstructions, jbtScores, jbtExit; //action buttons
 	private PaintPanel canvas; //all components are put on a PaintPanel which holds the background image
-	private JLabel heading;
+	private JLabel heading, labelGif; //the heading label of the Main Menu and the label that will hold bgGif
 	
-	/**  constructor */
+	//Constructor for MenuScreen
 	MenuScreen(String title){
-		super(title);
+		super(title); //calls ScreenFrame constructor creating a new JFrame with specified title
 		
 		//set a background image
-		bg = new ImageIcon("images/mole1.jpg");
-		//instantiate canvas and set null layout manager of canvas so we can manually place buttons
+		bg = new ImageIcon("images/bgMenu.png");
+		//instantiate canvas and set null layout manager of canvas so we can manually place components
 		canvas = new PaintPanel();
 		canvas.setLayout(null);
-		this.add(canvas);
+		this.add(canvas); //add canvas to frame
+		
+		//set the background gif on a JLabel, then add it to canvas
+		bgGif = new ImageIcon("images/gifMenu.gif"); //this is the background gif
+		labelGif = new JLabel(bgGif); //this label contains the background gif
+		canvas.add(labelGif); //add GIF label to canvas
+		labelGif.setBounds(200, 250, 400, 400); //set bounds of labelGif
 		
 		//add a custom label for the heading
-		canvas.add(heading = addCustomLabel("Welcome to Whack-A-Mole!", Color.black, new Font("Comic Sans MS", Font.BOLD, 60)));
-		heading.setBounds(50, 25, 900, 150);
+		canvas.add(heading = addCustomLabel("Welcome to Whack-A-Mole!", Color.white, new Font("Comic Sans MS", Font.BOLD, 60)));
+		heading.setBounds(50, 25, 900, 150); //set bounds for the heading on the canvas
 		
 		//add the Play button
 		jbtPlay = addCustomButton("Play", 750, 180, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
-		jbtPlay.addActionListener(this);
-		canvas.add(jbtPlay);
+		jbtPlay.addActionListener(this); //register action listener
+		canvas.add(jbtPlay); //add to canvas
 		
 		//add the Instructions button
 		jbtInstructions = addCustomButton("Instructions", 750, 300, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
-		jbtInstructions.addActionListener(this);
-		canvas.add(jbtInstructions);
+		jbtInstructions.addActionListener(this); //register action listener
+		canvas.add(jbtInstructions); //add to canvas
 
-		//add the Highscores button
-		jbtScores = addCustomButton("Highscores", 750, 420, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
-		jbtScores.addActionListener(this);
-		canvas.add(jbtScores);
+		//add the Scores button
+		jbtScores = addCustomButton("Scores", 750, 420, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
+		jbtScores.addActionListener(this); //register action listener
+		canvas.add(jbtScores); //add to canvas
 
 		//add the Exit button
 		jbtExit = addCustomButton("Exit", 750, 540, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
-		jbtExit.addActionListener(this);
-		canvas.add(jbtExit);
+		jbtExit.addActionListener(this); //register action listener
+		canvas.add(jbtExit); //add to canvas
 		
 	}
 
 	/**
-	 * This method is implemented from the ActionListener interface. Each button click decides a different scenario
+	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -60,20 +65,22 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 		if(e.getSource() == jbtPlay) {
 			//create new instance of DifficultyScreen
 			new DifficultyScreen("Difficulty Selection");
-			this.dispose();
+			this.dispose(); //get rid of current frame
 		}
 		else if(e.getSource() == jbtInstructions) {
-			
+			//create new instance of InstructionsScreen
+			new InstructionsScreen("Instructions");
+			this.dispose(); //get rid of current frame
 		}
 		else if(e.getSource() == jbtScores) {
 			//create new instance of ScoreScreen
-			new ScoreScreen("High Scores");
-			this.dispose(); //get rid of current JFrame
+			new ScoreScreen("Scores");
+			this.dispose(); //get rid of current frame
 		}
 		//exit button exits the program
 		else if(e.getSource() == jbtExit) {
-			//exit the game
-			this.dispose();
+			//exit the program
+			System.exit(0);
 		}
 	}
 	
@@ -84,7 +91,7 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 	class PaintPanel extends JPanel{
 		protected void paintComponent(Graphics g){
 			super.paintComponent(g); //override the paintComponent method
-			//draw the background image
+			//draw the background image to fill the entire panel
 			g.drawImage(bg.getImage(),0,0,this.getWidth(),this.getHeight(),null);
 		}
 	}
