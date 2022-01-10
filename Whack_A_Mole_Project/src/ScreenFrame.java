@@ -1,5 +1,4 @@
-/**
- * This class is a general format for all screens (which will be JFames) in our game. For example, it sets
+* This class is a general format for all screens (which will be JFames) in our game. For example, it sets
  * a definite size, default close operation, etc. It also contains general methods for creating custom JButtons
  * and JLabels that all game screens may use.
  */
