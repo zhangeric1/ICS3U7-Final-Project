@@ -24,7 +24,7 @@ public class TitleScreen extends ScreenFrame implements ActionListener{
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 400, 30));
 		this.getContentPane().setBackground(Color.lightGray);
 		
-		//this.add(new JLabel("                                                         "));
+		//This line creates a header line (for decoration)
 		this.add(addCustomLabel("___________________________________", Color.cyan, TITLE_FONT));
 		
 		//Add Project name as a custom label (addCustomLabel was declared in ScreenFrame class so we inherit it)
@@ -42,7 +42,10 @@ public class TitleScreen extends ScreenFrame implements ActionListener{
 		jbtNxt = addCustomButton("Next", 200, 75, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.BOLD, 20));
 		jbtNxt.addActionListener(this); //register action listener so actions can be performed when pressed
 		this.add(jbtNxt); //add Next button to the frame
-		this.add(addCustomLabel("___________________________________", Color.cyan, TITLE_FONT));		
+		
+		//This line creates a footer line
+		this.add(addCustomLabel("___________________________________", Color.cyan, TITLE_FONT));	
+		
 		//Set Visible again because FlowLayout needs it to be set last
 		this.setVisible(true);
 	}
