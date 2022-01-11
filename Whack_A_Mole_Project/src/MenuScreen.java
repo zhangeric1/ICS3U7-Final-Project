@@ -30,7 +30,7 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 		labelGif.setBounds(130, 250, 500, 400);
 		
 		//add a custom label for the heading
-		canvas.add(heading = addCustomLabel("Welcome to Whack-A-Mole!", Color.white, new Font("Comic Sans MS", Font.BOLD, 60)));
+		canvas.add(heading = addCustomLabel("Welcome to Whack-A-Mole!", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 60)));
 		heading.setBounds(50, 25, 900, 150); //set bounds for the heading on the canvas
 		
 		//add the Play button
