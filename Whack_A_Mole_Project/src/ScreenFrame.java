@@ -1,4 +1,5 @@
-* This class is a general format for all screens (which will be JFames) in our game. For example, it sets
+/**
+ * This class is a general format for all screens (which will be JFames) in our game. For example, it sets
  * a definite size, default close operation, etc. It also contains general methods for creating custom JButtons
  * and JLabels that all game screens may use.
  */
@@ -7,10 +8,10 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public abstract class ScreenFrame extends JFrame{
-
+	
 	//Constructor: Defines state/behavior that all child frames will inherit
-	public ScreenFrame(String title) {
-		super(title); //creates a JFrame with specified title
+	public ScreenFrame() {
+		super("Whack-a-Mole"); //creates a JFrame with specified title
 		this.setSize(1000, 800); //setting size of all game screens
 		this.setResizable(false); //user cannot resize frame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //set default close operation
