@@ -14,32 +14,30 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 	DifficultyScreen(){
 		super();
 		
-		
-		canvas = new PaintPanel();
 		canvas.setLayout(null);
 		this.add(canvas);
 		
+		//Label prompting the user to press a button
 		bgLabel = addCustomLabel("Select The Difficulty", Color.black, new Font("MV Boli", Font.BOLD, 50));
 		bgLabel.setBounds(100, -200, this.getWidth() - 1, this.getHeight() - 1 );
 		canvas.add(bgLabel);
-		
+		//Button for easy mode
 		btn1 = addCustomButton("Easy", 25, 300, 300, 200, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25));
 		btn1.addActionListener(this);
 		canvas.add(btn1);
-		
+		//Button for medium mode
 		btn2 = addCustomButton("Medium", 350, 300, 300, 200, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25));
 		btn2.addActionListener(this);
 		canvas.add(btn2);
-		
+		//Button for hard mode
 		btn3 = addCustomButton("Hard", 675, 300, 300, 200, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25));
 		btn3.addActionListener(this);
 		canvas.add(btn3);
-		
+		//Return to menu button
 		btn4 = addCustomButton("Back", 750, 650, 200, 80, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25));
 		btn4.addActionListener(this);
 		canvas.add(btn4);
 		
-		//this.setResizable(false);
 	}
 
 	@Override
@@ -62,6 +60,7 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 	
 	class PaintPanel extends JPanel{
 		protected void paintComponent(Graphics g){
+			//Prints the canvas that holds the buttons and label
 			super.paintComponent(g);
 			
 		}
