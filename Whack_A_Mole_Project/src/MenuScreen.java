@@ -24,11 +24,10 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 		canvas.setLayout(null);
 		this.add(canvas); //add canvas to frame
 		
-		//set the background gif on a JLabel, then add it to canvas
-		bgGif = new ImageIcon("images/gifMenu.gif"); //this is the background gif
-		labelGif = new JLabel(bgGif); //this label contains the background gif
-		canvas.add(labelGif); //add GIF label to canvas
-		labelGif.setBounds(200, 250, 400, 400); //set bounds of labelGif
+		bgGif = new ImageIcon("images/gifMenu.gif");
+		labelGif = new JLabel(bgGif);
+		canvas.add(labelGif);
+		labelGif.setBounds(130, 250, 500, 400);
 		
 		//add a custom label for the heading
 		canvas.add(heading = addCustomLabel("Welcome to Whack-A-Mole!", Color.white, new Font("Comic Sans MS", Font.BOLD, 60)));
