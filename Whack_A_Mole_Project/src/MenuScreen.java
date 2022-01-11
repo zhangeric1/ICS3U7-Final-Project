@@ -12,10 +12,12 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 	private JButton jbtPlay ,jbtInstructions, jbtScores, jbtExit; //action buttons
 	private PaintPanel canvas; //all components are put on a PaintPanel which holds the background image
 	private JLabel heading, labelGif; //the heading label of the Main Menu and the label that will hold bgGif
+	private Color menuColorFg = Color.cyan, menuColorBg = Color.green; //colors of menu button foreground and background respectively
+	private Font menuFont = new Font("Comic Sans MS", Font.BOLD, 25); //font of menu buttons
 	
 	//Constructor for MenuScreen
-	MenuScreen(String title){
-		super(title); //calls ScreenFrame constructor creating a new JFrame with specified title
+	MenuScreen(){
+		super(); //calls ScreenFrame constructor creating a new JFrame with specified title
 		
 		//set a background image
 		bg = new ImageIcon("images/bgMenu.png");
@@ -34,22 +36,22 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 		heading.setBounds(50, 25, 900, 150); //set bounds for the heading on the canvas
 		
 		//add the Play button
-		jbtPlay = addCustomButton("Play", 750, 180, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
+		jbtPlay = addCustomButton("Play", 750, 180, 200, 80, menuColorFg, menuColorBg, menuFont);
 		jbtPlay.addActionListener(this); //register action listener
 		canvas.add(jbtPlay); //add to canvas
 		
 		//add the Instructions button
-		jbtInstructions = addCustomButton("Instructions", 750, 300, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
+		jbtInstructions = addCustomButton("Instructions", 750, 300, 200, 80, menuColorFg, menuColorBg, menuFont);
 		jbtInstructions.addActionListener(this); //register action listener
 		canvas.add(jbtInstructions); //add to canvas
 
 		//add the Scores button
-		jbtScores = addCustomButton("Scores", 750, 420, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
+		jbtScores = addCustomButton("Scores", 750, 420, 200, 80, menuColorFg, menuColorBg, menuFont);
 		jbtScores.addActionListener(this); //register action listener
 		canvas.add(jbtScores); //add to canvas
 
 		//add the Exit button
-		jbtExit = addCustomButton("Exit", 750, 540, 200, 80, Color.blue, Color.green, new Font("Comic Sans MS", Font.PLAIN, 25));
+		jbtExit = addCustomButton("Exit", 750, 540, 200, 80, menuColorFg, menuColorBg, menuFont);
 		jbtExit.addActionListener(this); //register action listener
 		canvas.add(jbtExit); //add to canvas
 		
@@ -63,17 +65,17 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 		//different scenarios for each button
 		if(e.getSource() == jbtPlay) {
 			//create new instance of DifficultyScreen
-			new DifficultyScreen("Difficulty Selection");
+			new DifficultyScreen();
 			this.dispose(); //get rid of current frame
 		}
 		else if(e.getSource() == jbtInstructions) {
 			//create new instance of InstructionsScreen
-			new InstructionsScreen("Instructions");
+			new InstructionsScreen();
 			this.dispose(); //get rid of current frame
 		}
 		else if(e.getSource() == jbtScores) {
 			//create new instance of ScoreScreen
-			new ScoreScreen("Scores");
+			new ScoreScreen();
 			this.dispose(); //get rid of current frame
 		}
 		//exit button exits the program
