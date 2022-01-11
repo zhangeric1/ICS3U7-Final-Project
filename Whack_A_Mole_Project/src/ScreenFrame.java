@@ -11,7 +11,7 @@ public abstract class ScreenFrame extends JFrame{
 	
 	//Constructor: Defines state/behavior that all child frames will inherit
 	public ScreenFrame() {
-		super("Whack-a-Mole"); //creates a JFrame with specified title
+		super("Whack-a-Mole"); //creates a JFrame with specified title (all frames will have the same title)
 		this.setSize(1000, 800); //setting size of all game screens
 		this.setResizable(false); //user cannot resize frame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //set default close operation
