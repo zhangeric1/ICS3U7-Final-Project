@@ -12,8 +12,8 @@ public class InstructionsScreen extends ScreenFrame implements ActionListener{
 	private PaintPanel canvas; //PaintPanel that the background image will be drawn on
 	private JButton jbtMenu; //button to return to menu
 	
-	public InstructionsScreen(String title) {
-		super(title);
+	public InstructionsScreen() {
+		super();
 		bg = new ImageIcon("images/bgInstructions.png"); //set background image
 		canvas = new PaintPanel();
 		canvas.setLayout(null); //set layout of canvas to null so we can manually set buttons
@@ -28,7 +28,7 @@ public class InstructionsScreen extends ScreenFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jbtMenu) {
-			new MenuScreen("Main Menu");
+			new MenuScreen();
 			this.dispose();
 		}
 	}
@@ -45,3 +45,4 @@ public class InstructionsScreen extends ScreenFrame implements ActionListener{
 		}
 	}
 }
+
