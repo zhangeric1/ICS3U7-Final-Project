@@ -39,7 +39,7 @@ public class TitleScreen extends ScreenFrame implements ActionListener{
 		this.add(addCustomLabel("ICS3U7-01", TITLE_COLOR, TITLE_FONT));
 		
 		//Button to go to MenuScreen
-		jbtNxt = addCustomButton("Next", 200, 75, Color.black, Color.cyan, new Font("Comic Sans", Font.BOLD, 20));
+		jbtNxt = addCustomButton("Next", 200, 75, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 20));
 		jbtNxt.addActionListener(this); //register action listener so actions can be performed when pressed
 		this.add(jbtNxt); //add Next button to the frame
 		this.add(addCustomLabel("___________________________________", Color.cyan, TITLE_FONT));		
