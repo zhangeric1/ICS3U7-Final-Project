@@ -1,4 +1,4 @@
-* This class is the menu screen of our game. It has 4 buttons that perform different actions (exiting, commencing gameplay, etc.).
+/* This class is the menu screen of our game. It has 4 buttons that perform different actions (exiting, commencing gameplay, etc.).
  */
 import java.awt.*;
 import java.awt.event.*;
@@ -12,8 +12,8 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 	private JButton jbtPlay ,jbtInstructions, jbtScores, jbtExit; //action buttons
 	private PaintPanel canvas; //all components are put on a PaintPanel which holds the background image
 	private JLabel heading, labelGif; //the heading label of the Main Menu and the label that will hold bgGif
-	private Color menuColorFg = Color.cyan, menuColorBg = Color.green; //colors of menu button foreground and background respectively
-	private Font menuFont = new Font("Comic Sans MS", Font.BOLD, 25); //font of menu buttons
+	private Color menuColorFg = Color.blue, menuColorBg = Color.cyan; //colors of menu button foreground and background respectively
+	private Font menuFont = new Font("Comic Sans MS", Font.PLAIN, 25); //font of menu buttons
 	
 	//Constructor for MenuScreen
 	MenuScreen(){
@@ -75,7 +75,7 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 		}
 		else if(e.getSource() == jbtScores) {
 			//create new instance of ScoreScreen
-			new ScoreScreen();
+			//new ScoreScreen();
 			this.dispose(); //get rid of current frame
 		}
 		//exit button exits the program
