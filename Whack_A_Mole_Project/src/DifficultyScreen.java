@@ -34,7 +34,7 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 		btn3.addActionListener(this);
 		canvas.add(btn3);
 		//Return to menu button
-		btn4 = addCustomButton("Back", 750, 650, 200, 80, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25));
+		btn4 = addCustomButton("Menu", 750, 650, 200, 80, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25));
 		btn4.addActionListener(this);
 		canvas.add(btn4);
 		
