@@ -1,4 +1,4 @@
-* This class is the Instructions screen. It has information on controls, game modes, and over all game utility.
+/* This class is the Instructions screen. It has information on controls, game modes, and over all game utility.
  * A button allows users to return to the main menu.
  */
 import java.awt.*;
@@ -18,7 +18,7 @@ public class InstructionsScreen extends ScreenFrame implements ActionListener{
 		canvas = new PaintPanel();
 		canvas.setLayout(null); //set layout of canvas to null so we can manually set buttons
 		//add a Menu button
-		canvas.add(jbtMenu = addCustomButton("Menu", 700, 640, 200, 80, Color.cyan, Color.green, new Font("Comic Sans MS", Font.BOLD, 25)));
+		canvas.add(jbtMenu = addCustomButton("Menu", 700, 650, 150, 75, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25)));
 		//register Action Listener for menu button
 		jbtMenu.addActionListener(this);
 		//add canvas to JFrame
@@ -45,4 +45,3 @@ public class InstructionsScreen extends ScreenFrame implements ActionListener{
 		}
 	}
 }
-
