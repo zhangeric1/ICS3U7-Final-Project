@@ -14,7 +14,7 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 	DifficultyScreen(){
 		super();
 		
-		bg = new ImageIcon("images/MBackground.jpg");
+		
 		canvas = new PaintPanel();
 		canvas.setLayout(null);
 		this.add(canvas);
@@ -23,19 +23,19 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 		bgLabel.setBounds(100, -200, this.getWidth() - 1, this.getHeight() - 1 );
 		canvas.add(bgLabel);
 		
-		btn1 = addCustomButton("Easy", 25, 300, 300, 200, Color.blue, Color.green, new Font("Comic Sans", Font.PLAIN, 25));
+		btn1 = addCustomButton("Easy", 25, 300, 300, 200, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25));
 		btn1.addActionListener(this);
 		canvas.add(btn1);
 		
-		btn2 = addCustomButton("Medium", 350, 300, 300, 200, Color.blue, Color.green, new Font("Comic Sans", Font.PLAIN, 25));
+		btn2 = addCustomButton("Medium", 350, 300, 300, 200, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25));
 		btn2.addActionListener(this);
 		canvas.add(btn2);
 		
-		btn3 = addCustomButton("Hard", 675, 300, 300, 200, Color.blue, Color.green, new Font("Comic Sans", Font.PLAIN, 25));
+		btn3 = addCustomButton("Hard", 675, 300, 300, 200, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25));
 		btn3.addActionListener(this);
 		canvas.add(btn3);
 		
-		btn4 = addCustomButton("Back", 750, 650, 200, 80, Color.blue, Color.green, new Font("Comic Sans", Font.PLAIN, 25));
+		btn4 = addCustomButton("Back", 750, 650, 200, 80, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25));
 		btn4.addActionListener(this);
 		canvas.add(btn4);
 		
@@ -63,7 +63,7 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 	class PaintPanel extends JPanel{
 		protected void paintComponent(Graphics g){
 			super.paintComponent(g);
-			g.drawImage(bg.getImage(),0,0,this.getWidth(),this.getHeight(),null);
+			
 		}
 	}
 
