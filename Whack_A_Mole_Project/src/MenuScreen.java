@@ -76,7 +76,7 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 		else if(e.getSource() == jbtScores) {
 			//create new instance of ScoreScreen
 			//new ScoreScreen();
-			this.dispose(); //get rid of current frame
+			//this.dispose(); //get rid of current frame
 		}
 		//exit button exits the program
 		else if(e.getSource() == jbtExit) {
