@@ -18,13 +18,16 @@ public class InstructionsScreen extends ScreenFrame implements ActionListener{
 		canvas = new PaintPanel();
 		canvas.setLayout(null); //set layout of canvas to null so we can manually set buttons
 		//add a Menu button
-		canvas.add(jbtMenu = addCustomButton("Menu", 750, 650, 200, 80, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.BOLD, 25)));
+		canvas.add(jbtMenu = addCustomButton("Menu", 750, 650, 200, 80, Color.blue, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25)));
 		//register Action Listener for menu button
 		jbtMenu.addActionListener(this);
 		//add canvas to JFrame
 		this.add(canvas);
 	}
 	
+	/**
+	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jbtMenu) {

@@ -1,5 +1,6 @@
 /* This class is the menu screen of our game. It has 4 buttons that perform different actions (exiting, commencing gameplay, etc.).
  */
+//import necessary packages
 import java.awt.*;
 import java.awt.event.*;
 
@@ -12,12 +13,12 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 	private JButton jbtPlay ,jbtInstructions, jbtScores, jbtExit; //action buttons
 	private PaintPanel canvas; //all components are put on a PaintPanel which holds the background image
 	private JLabel heading, labelGif; //the heading label of the Main Menu and the label that will hold bgGif
-	private Color menuColorFg = Color.blue, menuColorBg = Color.cyan; //colors of menu button foreground and background respectively
-	private Font menuFont = new Font("Comic Sans MS", Font.PLAIN, 25); //font of menu buttons
+	private final Color MENU_COLOR_FG = Color.blue, MENU_COLOR_BG = Color.cyan; //constant colors of menu button foreground and background respectively
+	private final Font MENU_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of menu buttons
 	
 	//Constructor for MenuScreen
 	MenuScreen(){
-		super(); //calls ScreenFrame constructor creating a new JFrame with specified title
+		super(); //calls ScreenFrame constructor creating a new ScreenFrame
 		
 		//set a background image
 		bg = new ImageIcon("images/bgMenu.png");
@@ -36,22 +37,22 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 		heading.setBounds(50, 25, 900, 150); //set bounds for the heading on the canvas
 		
 		//add the Play button
-		jbtPlay = addCustomButton("Play", 750, 180, 200, 80, menuColorFg, menuColorBg, menuFont);
+		jbtPlay = addCustomButton("Play", 750, 180, 200, 80, MENU_COLOR_FG, MENU_COLOR_BG, MENU_FONT);
 		jbtPlay.addActionListener(this); //register action listener
 		canvas.add(jbtPlay); //add to canvas
 		
 		//add the Instructions button
-		jbtInstructions = addCustomButton("Instructions", 750, 300, 200, 80, menuColorFg, menuColorBg, menuFont);
+		jbtInstructions = addCustomButton("Instructions", 750, 300, 200, 80, MENU_COLOR_FG, MENU_COLOR_BG, MENU_FONT);
 		jbtInstructions.addActionListener(this); //register action listener
 		canvas.add(jbtInstructions); //add to canvas
 
 		//add the Scores button
-		jbtScores = addCustomButton("Scores", 750, 420, 200, 80, menuColorFg, menuColorBg, menuFont);
+		jbtScores = addCustomButton("Scores", 750, 420, 200, 80, MENU_COLOR_FG, MENU_COLOR_BG, MENU_FONT);
 		jbtScores.addActionListener(this); //register action listener
 		canvas.add(jbtScores); //add to canvas
 
 		//add the Exit button
-		jbtExit = addCustomButton("Exit", 750, 540, 200, 80, menuColorFg, menuColorBg, menuFont);
+		jbtExit = addCustomButton("Exit", 750, 540, 200, 80, MENU_COLOR_FG, MENU_COLOR_BG, MENU_FONT);
 		jbtExit.addActionListener(this); //register action listener
 		canvas.add(jbtExit); //add to canvas
 		

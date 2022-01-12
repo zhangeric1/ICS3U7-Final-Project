@@ -3,6 +3,7 @@
  * date, and course code. It also has a button to transport the user to the menu screen. This screen cannot be
  * returned to and only displays once every game.
  */
+//import necessary packages
 import java.awt.*;
 import java.awt.event.*;
 
@@ -18,13 +19,13 @@ public class TitleScreen extends ScreenFrame implements ActionListener{
 	
 	//Constructor for TitleScreen
 	public TitleScreen() {
-		super(); //calls ScreenFrame constructor creating a new JFrame with specified title
+		super(); //calls ScreenFrame constructor creating a new ScreenFrame
 		
 		//set layout manager and background color of TitleScreen
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 400, 30));
 		this.getContentPane().setBackground(Color.lightGray);
 		
-		//This line creates a header line (for decoration)
+		//This line creates a header line
 		this.add(addCustomLabel("___________________________________", Color.cyan, TITLE_FONT));
 		
 		//Add Project name as a custom label (addCustomLabel was declared in ScreenFrame class so we inherit it)

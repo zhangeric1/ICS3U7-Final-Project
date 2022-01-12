@@ -3,6 +3,7 @@
  * a definite size, default close operation, etc. It also contains general methods for creating custom JButtons
  * and JLabels that all game screens may use.
  */
+//import necessary packages
 import java.awt.*;
 import javax.swing.*;
 
@@ -15,7 +16,7 @@ public abstract class ScreenFrame extends JFrame{
 		this.setSize(1000, 800); //setting size of all game screens
 		this.setResizable(false); //user cannot resize frame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //set default close operation
-		this.setVisible(true); //set visibility
+		this.setVisible(true); //set visible
 	}
 	
 	/**
