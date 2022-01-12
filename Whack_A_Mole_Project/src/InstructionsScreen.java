@@ -23,7 +23,7 @@ public class InstructionsScreen extends ScreenFrame implements ActionListener{
 		jbtMenu.addActionListener(this);
 		//add canvas to JFrame
 		this.add(canvas);
-	}
+	}//end of InstructionsScreen contructor
 	
 	/**
 	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
@@ -34,7 +34,7 @@ public class InstructionsScreen extends ScreenFrame implements ActionListener{
 			new MenuScreen();
 			this.dispose();
 		}
-	}
+	}//end of actionPerformed method
 	
 	/*
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
@@ -45,6 +45,6 @@ public class InstructionsScreen extends ScreenFrame implements ActionListener{
 			super.paintComponent(g); //override the paintComponent method
 			//draw the background image
 			g.drawImage(bg.getImage(),0,0,this.getWidth(),this.getHeight(),null);
-		}
+		}//end of paintComponent method
 	}
 }

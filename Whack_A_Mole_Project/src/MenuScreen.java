@@ -56,7 +56,7 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 		jbtExit.addActionListener(this); //register action listener
 		canvas.add(jbtExit); //add to canvas
 		
-	}
+	}//end of MenuScreen constructor
 
 	/**
 	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
@@ -84,7 +84,7 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 			//exit the program
 			System.exit(0);
 		}
-	}
+	}//end of actionPerformed method
 	
 	/*
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
@@ -95,7 +95,7 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 			super.paintComponent(g); //override the paintComponent method
 			//draw the background image to fill the entire panel
 			g.drawImage(bg.getImage(),0,0,this.getWidth(),this.getHeight(),null);
-		}
+		}//end of paintComponent method
 	}
 
 }

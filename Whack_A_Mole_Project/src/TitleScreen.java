@@ -26,7 +26,7 @@ public class TitleScreen extends ScreenFrame implements ActionListener{
 		this.getContentPane().setBackground(Color.lightGray);
 		
 		//This line creates a header line
-		this.add(addCustomLabel("___________________________________", Color.cyan, TITLE_FONT));
+		this.add(addDividerLabel());
 		
 		//Add Project name as a custom label (addCustomLabel was declared in ScreenFrame class so we inherit it)
 		this.add(addCustomLabel("Final Project: Whack-a-Mole!", TITLE_COLOR, TITLE_FONT));
@@ -45,12 +45,22 @@ public class TitleScreen extends ScreenFrame implements ActionListener{
 		this.add(jbtNxt); //add Next button to the frame
 		
 		//This line creates a footer line
-		this.add(addCustomLabel("___________________________________", Color.cyan, TITLE_FONT));	
+		this.add(addDividerLabel());	
 		
 		//Set Visible again because FlowLayout needs it to be set last
 		this.setVisible(true);
-	}
+	}//end of TitleScreen constructor
 
+	/**
+	 * This method returns a JLabel as a divider
+	 * @return A cyan-colored divider label with the same font as the title font
+	 */
+	private JLabel addDividerLabel() {
+		//create the custom divider using addCustomLabel method
+		JLabel label = addCustomLabel("___________________________________", Color.cyan, TITLE_FONT);
+		return label; //return divider label
+	}//end of addDividerLabel method
+	
 	/**
 	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
 	 */
@@ -61,6 +71,6 @@ public class TitleScreen extends ScreenFrame implements ActionListener{
 			this.dispose(); //get rid of current frame
 			new MenuScreen(); //create new instance of MenuScreen with title
 		}
-	}
+	}//end of actionPerformed method
 	
 }

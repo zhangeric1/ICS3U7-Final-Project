@@ -17,7 +17,7 @@ public abstract class ScreenFrame extends JFrame{
 		this.setResizable(false); //user cannot resize frame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //set default close operation
 		this.setVisible(true); //set visible
-	}
+	}//end of ScreenFrame constructor
 	
 	/**
 	 * This method creates a custom JButton

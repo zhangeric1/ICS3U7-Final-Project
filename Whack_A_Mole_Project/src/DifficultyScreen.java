@@ -51,7 +51,7 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 		jbtMenu.addActionListener(this); //register action listener
 		canvas.add(jbtMenu); //add button to canvas
 		
-	}
+	}//end of DifficultyScreen constructor
 
 	/**
 	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
@@ -73,7 +73,7 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 			this.dispose(); //get rid of current frame
 		}
 
-	}
+	}//end of actionPerformed method
 	
 	/*
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
@@ -84,7 +84,7 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 			//Prints the canvas that holds the buttons and label
 			super.paintComponent(g);
 			
-		}
+		}//end of paintComponent method
 	}
 
 }
