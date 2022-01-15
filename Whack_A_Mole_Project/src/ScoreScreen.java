@@ -25,9 +25,9 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 	//Constructor for ScoreScreen
 	public ScoreScreen(){
 		//File names
-		easyFile = "easyFile.txt";
-		mediumFile = "mediumFile.txt";
-		hardFile = "hardFile.txt";
+		easyFile = "files/easyFile.txt";
+		mediumFile = "files/mediumFile.txt";
+		hardFile = "files/hardFile.txt";
 		//array list of scores. Initialize them with method
 		easyScores = readFileIntoList(easyFile);
 		mediumScores = readFileIntoList(mediumFile);
