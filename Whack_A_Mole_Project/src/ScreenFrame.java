@@ -9,11 +9,14 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public abstract class ScreenFrame extends JFrame{
+	//General variables
+	protected static final Color BG_COLOR = new Color(0x394452); //Default background color is visible to subclasses of ScreenFrame
 	
 	//Constructor: Defines state/behavior that all child frames will inherit
 	public ScreenFrame() {
 		super("Whack-a-Mole"); //creates a JFrame with specified title
 		this.setSize(1000, 800); //setting size of all game screens
+		this.setLocationRelativeTo(null);
 		this.setResizable(false); //user cannot resize frame
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //set default close operation
 		this.setVisible(true); //set visible

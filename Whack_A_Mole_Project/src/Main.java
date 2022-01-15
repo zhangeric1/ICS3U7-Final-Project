@@ -5,5 +5,6 @@ public class Main {
 	public static void main(String[] args) {
 		//create new instance of TitleScreen
 		new TitleScreen();
+		//new ScoreScreen();
 	}//end of main method
 }

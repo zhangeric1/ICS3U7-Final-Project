@@ -14,13 +14,11 @@ public class TitleScreen extends ScreenFrame implements ActionListener{
 	//instance variables
 	private JButton jbtNxt; //Next button
 	//Constants for the title font and color so we can change them easily if needed
-	private final Font TITLE_FONT = new Font("Comic Sans MS", Font.BOLD, 40);
-	private final Color TITLE_COLOR = Color.black;
+	private static final Font TITLE_FONT = new Font("Comic Sans MS", Font.BOLD, 40);
+	private static final Color TITLE_COLOR = Color.black;
 	
 	//Constructor for TitleScreen
-	public TitleScreen() {
-		super(); //calls ScreenFrame constructor creating a new ScreenFrame
-		
+	public TitleScreen() {		
 		//set layout manager and background color of TitleScreen
 		this.setLayout(new FlowLayout(FlowLayout.CENTER, 400, 30));
 		this.getContentPane().setBackground(Color.lightGray);
@@ -68,8 +66,8 @@ public class TitleScreen extends ScreenFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		//clicking on jbtNxt will take user to MenuScreen
 		if(e.getSource() == jbtNxt) {
-			this.dispose(); //get rid of current frame
 			new MenuScreen(); //create new instance of MenuScreen with title
+			this.dispose(); //get rid of current frame
 		}
 	}//end of actionPerformed method
 	
