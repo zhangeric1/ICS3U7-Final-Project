@@ -1,0 +1,119 @@
+/**
+ * This is our difficulty selection screen. After selecting a difficulty level, the user is moved into that game mode.
+ * The user can also choose to move back to the main menu.
+ */
+//import necessary packages
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+@SuppressWarnings("serial")
+public class EasyPlayScreen extends ScreenFrame implements ActionListener{
+	private Image bg;
+	private JButton jbtPause, jbtMedium, jbtHard, jbtMenu;
+	private PaintPanel canvas = new PaintPanel(); //all components are put on a PaintPanel which holds the background image (bg)
+	private JLabel mode, timeLeft, score; //text label
+	private final Color DIFFICULTY_COLOR_FG = Color.blue, DIFFICULTY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
+	private final Font DIFFICULTY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
+	public static int points;
+	public static int timeleft = 60;
+
+	
+	//Constructor for EasyPlayScreen:
+	EasyPlayScreen(){
+		super(); //calls ScreenFrame constructor creating a new ScreenFrame
+		
+		//bg = Toolkit.getDefaultToolkit().createImage("bgPlay.jpg");
+	
+		//set layout of canvas so we can add buttons manually
+		canvas.setLayout(null);
+		this.add(canvas); //add canvas to EasyPlayScreen
+		
+		//label showing time left
+		timeLeft = addCustomLabel(Integer.toString(timeleft), Color.black, new Font("MV Boli", Font.BOLD, 50));
+		//Sets bounds of the label
+		timeLeft.setBounds(400, -350, this.getWidth() - 1, this.getHeight() - 1 );
+		canvas.add(timeLeft); //add label to canvas
+		
+		//label showing score
+		score = addCustomLabel("Score: " + points, Color.black, new Font("MV Boli", Font.BOLD, 50));
+		//Sets bounds of the label
+		score.setBounds(725, -350, this.getWidth() - 1, this.getHeight() - 1 );
+		canvas.add(score); //add label to canvas
+		
+		//label showing the difficulty
+		mode = addCustomLabel("Easy", Color.black, new Font("MV Boli", Font.BOLD, 50));
+		//Sets bounds of the label
+		mode.setBounds(840, 325, this.getWidth() - 1, this.getHeight() - 1 );
+		canvas.add(mode); //add label to canvas
+		
+		
+		jbtPause = addCustomButton("||", 10, 10, 75, 75, DIFFICULTY_COLOR_FG, DIFFICULTY_COLOR_BG, DIFFICULTY_FONT);
+		jbtPause.addActionListener(this); //register action listener
+		canvas.add(jbtPause); //add button to canvas
+		
+		Mole m1 = new Mole();
+		m1.setBounds(150, 200, 100, 90);
+		canvas.add(m1);
+		
+		Mole m2 = new Mole();
+		m2.setBounds(450, 200, 100, 90);
+		canvas.add(m2);
+		
+		Mole m3 = new Mole();
+		m3.setBounds(750, 200, 100, 90);
+		canvas.add(m3);
+		
+		Mole m4 = new Mole();
+		m4.setBounds(150, 350, 100, 90);
+		canvas.add(m4);
+		
+		Mole m5 = new Mole();
+		m5.setBounds(450, 350, 100, 90);
+		canvas.add(m5);
+		
+		Mole m6 = new Mole();
+		m6.setBounds(750, 350, 100, 90);
+		canvas.add(m6);
+		
+		Mole m7 = new Mole();
+		m7.setBounds(150, 500, 100, 90);
+		canvas.add(m7);
+		
+		Mole m8 = new Mole();
+		m8.setBounds(450, 500, 100, 90);
+		canvas.add(m8);
+		
+		Mole m9 = new Mole();
+		m9.setBounds(750, 500, 100, 90);
+		canvas.add(m9);
+	}//end of EasyPlayScreen constructor
+
+
+			
+	/**
+	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == jbtPause) {
+			new PauseScreen();
+			this.dispose();
+		}
+
+	}//end of actionPerformed method
+	
+	/*
+	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
+	 * PaintPanel is added to the JFrame.
+	 */
+	class PaintPanel extends JPanel{
+		protected void paintComponent(Graphics g){
+			//Prints the canvas that holds the buttons and label
+			//g.drawImage(bg, 0, 0, null);
+			super.paintComponent(g);
+			
+		}//end of paintComponent method
+	}
+
+}
