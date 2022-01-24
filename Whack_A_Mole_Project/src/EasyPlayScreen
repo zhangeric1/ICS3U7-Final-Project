@@ -1,5 +1,5 @@
 /**
- * This is our play screen for the hard difficulty, the user can pause and return to menu using the pause button
+ * This is the play screen for the easy difficulty, the user can access the pause menu as well
  */
 //import necessary packages
 import java.awt.*;
@@ -7,24 +7,27 @@ import java.awt.event.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class HardPlayScreen extends ScreenFrame implements ActionListener{
-	//private ImageIcon bg; //bg will be used once an appropriate image is found
+public class EasyPlayScreen extends ScreenFrame implements ActionListener{
+	private Image bg;
 	private JButton jbtPause, jbtMedium, jbtHard, jbtMenu;
 	private PaintPanel canvas = new PaintPanel(); //all components are put on a PaintPanel which holds the background image (bg)
 	private JLabel mode, timeLeft, score; //text label
-	private final Color HARDPLAY_COLOR_FG = Color.blue, HARDPLAY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
-	private final Font HARDPLAY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
-	public static int points = 0;
-	public static int timeleft;
+	private final Color EASYPLAY_COLOR_FG = Color.blue, EASYPLAY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
+	private final Font EASYPLAY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
+	public static int points;
+	public static int timeleft = 60;
+	private static Mole[] mole = new Mole[9];
 
 	
-	//Constructor for HardPlayScreen:
-	HardPlayScreen(){
+	//Constructor for EasyPlayScreen:
+	EasyPlayScreen(){
 		super(); //calls ScreenFrame constructor creating a new ScreenFrame
 		
-		//set layout of canvas so we can add buttons manually0
+		//bg = Toolkit.getDefaultToolkit().createImage("bgPlay.jpg");
+	
+		//set layout of canvas so we can add buttons manually
 		canvas.setLayout(null);
-		this.add(canvas); //add canvas to DifficultyScreen
+		this.add(canvas); //add canvas to EasyPlayScreen
 		
 		//label showing time left
 		timeLeft = addCustomLabel(Integer.toString(timeleft), Color.black, new Font("MV Boli", Font.BOLD, 50));
@@ -33,98 +36,56 @@ public class HardPlayScreen extends ScreenFrame implements ActionListener{
 		canvas.add(timeLeft); //add label to canvas
 		
 		//label showing score
-		score = addCustomLabel("Score: " + Mole.points, Color.black, new Font("MV Boli", Font.BOLD, 50));
+		score = addCustomLabel("Score: " + points, Color.black, new Font("MV Boli", Font.BOLD, 50));
+		score.setText("Score: " + points);
 		//Sets bounds of the label
 		score.setBounds(725, -350, this.getWidth() - 1, this.getHeight() - 1 );
 		canvas.add(score); //add label to canvas
 		
-		jbtPause = addCustomButton("||", 25, 25, 75, 75, HARDPLAY_COLOR_FG, HARDPLAY_COLOR_BG, HARDPLAY_FONT);
-		jbtPause.addActionListener(this); //register action listener
-		canvas.add(jbtPause); //add button to canvas
-		
 		//label showing the difficulty
-		mode = addCustomLabel("Hard", Color.black, new Font("MV Boli", Font.BOLD, 50));
+		mode = addCustomLabel("Easy", Color.black, new Font("MV Boli", Font.BOLD, 50));
 		//Sets bounds of the label
 		mode.setBounds(840, 325, this.getWidth() - 1, this.getHeight() - 1 );
 		canvas.add(mode); //add label to canvas
 		
-		Mole m1 = new Mole();
-		m1.setBounds(100, 110, 100, 90);
-		canvas.add(m1);
 		
-		Mole m2 = new Mole();
-		m2.setBounds(300, 110, 100, 90);
-		canvas.add(m2);
+		jbtPause = addCustomButton("||", 10, 10, 75, 75, EASYPLAY_COLOR_FG, EASYPLAY_COLOR_BG, EASYPLAY_FONT);
+		jbtPause.addActionListener(this); //register action listener
+		canvas.add(jbtPause); //add button to canvas
 		
-		Mole m3 = new Mole();
-		m3.setBounds(500, 110, 100, 90);
-		canvas.add(m3);
+		//Create the mole objects
+		for (int i = 0; i <= 8; i++) {
+			mole[i] = new Mole();
+			canvas.add(mole[i]);
+		}
+		//Set the locations of the moles
+		mole[0].setBounds(150, 200, 100, 90);
+		mole[1].setBounds(450, 200, 100, 90);
+		mole[2].setBounds(750, 200, 100, 90);
+		mole[3].setBounds(150, 350, 100, 90);
+		mole[4].setBounds(450, 350, 100, 90);
+		mole[5].setBounds(750, 350, 100, 90);
+		mole[6].setBounds(150, 500, 100, 90);
+		mole[7].setBounds(450, 500, 100, 90);
+		mole[8].setBounds(750, 500, 100, 90);
 		
-		Mole m4 = new Mole();
-		m4.setBounds(700, 110, 100, 90);
-		canvas.add(m4);
-		
-		Mole m5 = new Mole();
-		m5.setBounds(150, 260, 100, 90);
-		canvas.add(m5);
-		
-		Mole m6 = new Mole();
-		m6.setBounds(350, 260, 100, 90);
-		canvas.add(m6);
-		
-		Mole m7 = new Mole();
-		m7.setBounds(550, 260, 100, 90);
-		canvas.add(m7);
-		
-		Mole m8 = new Mole();
-		m8.setBounds(750, 260, 100, 90);
-		canvas.add(m8);
-		
-		Mole m9 = new Mole();
-		m9.setBounds(100, 410, 100, 90);
-		canvas.add(m9);
-		
-		Mole m10 = new Mole();
-		m10.setBounds(300, 410, 100, 90);
-		canvas.add(m10);
-		
-		Mole m11 = new Mole();
-		m11.setBounds(500, 410, 100, 90);
-		canvas.add(m11);
-		
-		Mole m12 = new Mole();
-		m12.setBounds(700, 410, 100, 90);
-		canvas.add(m12);
-		
-		Mole m13 = new Mole();
-		m13.setBounds(150, 560, 100, 90);
-		canvas.add(m13);
-		
-		Mole m14 = new Mole();
-		m14.setBounds(350, 560, 100, 90);
-		canvas.add(m14);
-		
-		Mole m15 = new Mole();
-		m15.setBounds(550, 560, 100, 90);
-		canvas.add(m15);
-		
-		Mole m16 = new Mole();
-		m16.setBounds(750, 560, 100, 90);
-		canvas.add(m16);
-		
-	}//end of HardPlayScreen constructor
+		mole[4].setUp();
+		mole[7].setUp();
+		mole[2].setUp();
+	}//end of EasyPlayScreen constructor
 
-	/**
-	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
-	 */
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == jbtPause) {
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == jbtPause) {
 			new PauseScreen();
 			this.dispose();
 		}
-
-	}//end of actionPerformed method
+    }
+	
+			
+	/**
+	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
+	 */
 	
 	/*
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
@@ -133,6 +94,7 @@ public class HardPlayScreen extends ScreenFrame implements ActionListener{
 	class PaintPanel extends JPanel{
 		protected void paintComponent(Graphics g){
 			//Prints the canvas that holds the buttons and label
+			//g.drawImage(bg, 0, 0, null);
 			super.paintComponent(g);
 			
 		}//end of paintComponent method
