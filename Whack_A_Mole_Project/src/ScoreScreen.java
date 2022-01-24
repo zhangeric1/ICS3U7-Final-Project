@@ -13,7 +13,7 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class ScoreScreen extends ScreenFrame implements ActionListener{
-	private String easyFile, mediumFile, hardFile; //names of each text file
+	private static String easyFile, mediumFile, hardFile; //names of each text file
 	private ArrayList<Integer> easyScores, mediumScores, hardScores; //lists of scores from each text file
 	private JTable easyTable, mediumTable, hardTable; //tables to display scores
 	private JScrollPane easyScrollPane, mediumScrollPane, hardScrollPane; //Scroll panes allow each table to be scrolled through
@@ -248,4 +248,28 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 		}
 	}//end of clearFile method
 
+	/**
+	 * Getter method for obtaining name of Easy Scores text file
+	 * @return name of text file
+	 */
+	public static String getEasyFileName() {
+		return easyFile;
+	}//end of getEasyFileName method
+	
+	/**
+	 * Getter method for obtaining name of Hard Scores text file
+	 * @return name of text file
+	 */
+	public static String getMediumFileName() {
+		return mediumFile;
+	}//end of getMediumFileName method
+	
+	/**
+	 * Getter method for obtaining name of Hard Scores text file
+	 * @return name of text file
+	 */
+	public static String getHardFileName() {
+		return hardFile;
+	} //end of getHardFileName method
+	
 }

@@ -8,28 +8,15 @@ import java.awt.event.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class Mole extends JButton implements ActionListener{
+public class Mole extends JButton{
 	private ImageIcon imgUp = new ImageIcon("images/normalMoleUp.PNG"), imgDown = new ImageIcon("images/moleDown.PNG");//sprites for different actions
-	protected boolean isUp; //if mole is up
+	public boolean isUp; //if mole is up
 	
 	//constructor for making a any Mole instance
 	public Mole() {
 		this.setDown(); //set mole down by default
-		this.addActionListener(this); //register action listener with mole
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		//when a mole is clicked
-		if(e.getSource() == this) {
-			//if the mole is up
-			if(isUp) {
-				EasyPlayScreen.points++; //accumulate points by 1
-				this.setDown(); //set the mole down
-			}
-		}
-		
-	}
 	
 	/**
 	 * This method sets the mole down by changing its icon and status
@@ -46,5 +33,4 @@ public class Mole extends JButton implements ActionListener{
 		this.setIcon(imgUp);
 		isUp = true;
 	}
-	
 }
