@@ -15,7 +15,6 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 	private final Color DIFFICULTY_COLOR_FG = Color.blue, DIFFICULTY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
 	private final Font DIFFICULTY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
 	public static int timeleft;
-	public static int points;
 	
 	//Constructor for DifficultyScreen:
 	EndGameScreen(){
@@ -26,7 +25,7 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 		this.add(canvas); //add canvas to DifficultyScreen
 		
 		//Label prompting the user to press a button
-		score = addCustomLabel("Score: " + points, Color.black, new Font("MV Boli", Font.BOLD, 50));
+		score = addCustomLabel("Score: " + Mole.points, Color.black, new Font("MV Boli", Font.BOLD, 50));
 		//Sets bounds of the label
 		score.setBounds(400, -200, this.getWidth() - 1, this.getHeight() - 1 );
 		canvas.add(score); //add label to canvas
@@ -55,15 +54,7 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jbtPlayAgain) {
-			if (DifficultyScreen.diff == 1) {
-				new EasyPlayScreen();
-			}
-			else if (DifficultyScreen.diff == 2) {
-				new MediumPlayScreen();
-			}
-			else if (DifficultyScreen.diff == 3){
-				new HardPlayScreen();
-			}
+			new DifficultyScreen();
 			this.dispose();
 		}
 
