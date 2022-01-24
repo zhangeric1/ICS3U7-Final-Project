@@ -15,6 +15,7 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 	private JLabel label; //text label
 	private static final Color DIFFICULTY_COLOR_FG = Color.blue, DIFFICULTY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
 	private static final Font DIFFICULTY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
+	public static int diff;
 	
 	//Constructor for DifficultyScreen:
 	DifficultyScreen(){		
@@ -56,13 +57,19 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jbtEasy) {
-			
+			diff = 1;
+			new EasyPlayScreen();
+			this.dispose();
 		}
 		else if(e.getSource() == jbtMedium) {
-			
+			diff = 2;
+			new MediumPlayScreen();
+			this.dispose();
 		}
 		else if(e.getSource() == jbtHard) {
-			
+			diff = 3;
+			new HardPlayScreen();
+			this.dispose();
 		}
 		else if(e.getSource() == jbtMenu) {
 			//create new instance of MenuScreen class
@@ -71,5 +78,4 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 		}
 
 	}//end of actionPerformed method
-
 }
