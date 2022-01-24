@@ -1,103 +1,102 @@
-/**
- * This is the play screen for the easy difficulty, the user can access the pause menu as well
- */
-//import necessary packages
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class EasyPlayScreen extends ScreenFrame implements ActionListener{
-	private Image bg;
-	private JButton jbtPause, jbtMedium, jbtHard, jbtMenu;
-	private PaintPanel canvas = new PaintPanel(); //all components are put on a PaintPanel which holds the background image (bg)
-	private JLabel mode, timeLeft, score; //text label
+	public static int points = 0, timeLeft = 60;
+	private ImageIcon bg;
+	private JLabel headingLabel;
+	private JPanel headingPanel;
+	private JPanel grid;
 	private final Color EASYPLAY_COLOR_FG = Color.blue, EASYPLAY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
 	private final Font EASYPLAY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
-	public static int points;
-	public static int timeleft = 60;
-	private static Mole[] mole = new Mole[9];
+	Mole[] moles = new Mole[9];
+	int time = 60;
+	JButton jbtPause;
 
-	
-	//Constructor for EasyPlayScreen:
-	EasyPlayScreen(){
-		super(); //calls ScreenFrame constructor creating a new ScreenFrame
-		
-		//bg = Toolkit.getDefaultToolkit().createImage("bgPlay.jpg");
-	
-		//set layout of canvas so we can add buttons manually
-		canvas.setLayout(null);
-		this.add(canvas); //add canvas to EasyPlayScreen
-		
-		//label showing time left
-		timeLeft = addCustomLabel(Integer.toString(timeleft), Color.black, new Font("MV Boli", Font.BOLD, 50));
-		//Sets bounds of the label
-		timeLeft.setBounds(400, -350, this.getWidth() - 1, this.getHeight() - 1 );
-		canvas.add(timeLeft); //add label to canvas
-		
-		//label showing score
-		score = addCustomLabel("Score: " + points, Color.black, new Font("MV Boli", Font.BOLD, 50));
-		score.setText("Score: " + points);
-		//Sets bounds of the label
-		score.setBounds(725, -350, this.getWidth() - 1, this.getHeight() - 1 );
-		canvas.add(score); //add label to canvas
-		
-		//label showing the difficulty
-		mode = addCustomLabel("Easy", Color.black, new Font("MV Boli", Font.BOLD, 50));
-		//Sets bounds of the label
-		mode.setBounds(840, 325, this.getWidth() - 1, this.getHeight() - 1 );
-		canvas.add(mode); //add label to canvas
-		
-		
+	public EasyPlayScreen() {
+		bg = new ImageIcon("images/bgEasy.jpg");
+
+		this.setLayout(new BorderLayout());
+
+		headingLabel = addCustomLabel("     Easy: Score: " + points + "     Time left: " + timeLeft + " seconds", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 35));
+		headingPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		headingPanel.setBackground(BG_COLOR);
 		jbtPause = addCustomButton("||", 10, 10, 75, 75, EASYPLAY_COLOR_FG, EASYPLAY_COLOR_BG, EASYPLAY_FONT);
 		jbtPause.addActionListener(this); //register action listener
-		canvas.add(jbtPause); //add button to canvas
+		headingPanel.add(jbtPause);
+		headingPanel.add(headingLabel);
+		this.add(headingPanel, BorderLayout.NORTH);
 		
-		//Create the mole objects
-		for (int i = 0; i <= 8; i++) {
-			mole[i] = new Mole();
-			canvas.add(mole[i]);
+		grid = new PaintPanel();
+		grid.setLayout(null);
+		for(int i = 0; i < moles.length; i++) {
+			moles[i] = new Mole();
+			moles[i].addActionListener(this);
+			grid.add(moles[i]);
 		}
-		//Set the locations of the moles
-		mole[0].setBounds(150, 200, 100, 90);
-		mole[1].setBounds(450, 200, 100, 90);
-		mole[2].setBounds(750, 200, 100, 90);
-		mole[3].setBounds(150, 350, 100, 90);
-		mole[4].setBounds(450, 350, 100, 90);
-		mole[5].setBounds(750, 350, 100, 90);
-		mole[6].setBounds(150, 500, 100, 90);
-		mole[7].setBounds(450, 500, 100, 90);
-		mole[8].setBounds(750, 500, 100, 90);
+		moles[0].setBounds(100, 50, 200, 180);
+		moles[1].setBounds(100, 260, 200, 180);
+		moles[2].setBounds(100, 470, 200, 180);
 		
-		mole[4].setUp();
-		mole[7].setUp();
-		mole[2].setUp();
-	}//end of EasyPlayScreen constructor
+		moles[3].setBounds(400, 50, 200, 180);
+		moles[4].setBounds(400, 260, 200, 180);
+		moles[5].setBounds(400, 470, 200, 180);
+		
+		moles[6].setBounds(700, 50, 200, 180);
+		moles[7].setBounds(700, 260, 200, 180);
+		moles[8].setBounds(700, 470, 200, 180);
+		
+		this.add(grid, BorderLayout.CENTER);
+        
+		//pre-set some moles
+        moles[4].setUp();
+        moles[7].setUp();
+        moles[2].setUp();
+
+	}
 
 	@Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == jbtPause) {
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == jbtPause) {
 			new PauseScreen();
-			this.dispose();
 		}
-    }
-	
-			
-	/**
-	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
-	 */
-	
+		else {
+			for(int i = 0; i < 9; i++) {
+				if(e.getSource() == moles[i] && moles[i].isUp) {
+					points++;
+					int hole;
+					do {
+						hole = (int)(Math.random() * 9);
+					}while(moles[hole].isUp); //keep generating random holes if the mole on that hole is already up (no duplicates)
+					moles[hole].setUp();
+					moles[i].setDown();
+					headingLabel.setText("     EASY: Score: " + points + "     Time left: " + timeLeft + " seconds");
+					break;
+				}
+			}
+		}
+	}
+
 	/*
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
 	 * PaintPanel is added to the JFrame.
 	 */
 	class PaintPanel extends JPanel{
 		protected void paintComponent(Graphics g){
-			//Prints the canvas that holds the buttons and label
-			//g.drawImage(bg, 0, 0, null);
-			super.paintComponent(g);
-			
+			super.paintComponent(g); //override the paintComponent method
+			//draw the background image
+			g.drawImage(bg.getImage(),0,0,this.getWidth(),this.getHeight(),null);
 		}//end of paintComponent method
 	}
-
 }
