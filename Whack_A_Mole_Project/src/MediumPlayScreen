@@ -6,119 +6,93 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
 @SuppressWarnings("serial")
 public class MediumPlayScreen extends ScreenFrame implements ActionListener{
-	//private ImageIcon bg; //bg will be used once an appropriate image is found
-	private JButton jbtPause, jbtMedium, jbtHard, jbtMenu;
-	private PaintPanel canvas = new PaintPanel(); //all components are put on a PaintPanel which holds the background image (bg)
-	private JLabel mode, timeLeft, score; //text label
-	private final Color DIFFICULTY_COLOR_FG = Color.blue, DIFFICULTY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
-	private final Font DIFFICULTY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
-	public static int points = 0;
-	public static int timeleft = 60;
+	public static int points = 0, timeLeft = 60;
+	private ImageIcon bg;
+	private JLabel headingLabel;
+	private JPanel headingPanel;
+	private JPanel grid;
+	private final Color MEDIUMPLAY_COLOR_FG = Color.blue, MEDIUMPLAY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
+	private final Font MEDIUMPLAY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
+	Mole[] moles = new Mole[12];
+	int time = 60;
+	JButton jbtPause;
 	
 	//Constructor for MediumPlayScreen:
 	MediumPlayScreen(){
-		super(); //calls ScreenFrame constructor creating a new ScreenFrame
-		
-		//set layout of canvas so we can add buttons manually
-		canvas.setLayout(null);
-		this.add(canvas); //add canvas to DifficultyScreen
-		
-		
-		jbtPause = addCustomButton("||", 25, 25, 75, 75, DIFFICULTY_COLOR_FG, DIFFICULTY_COLOR_BG, DIFFICULTY_FONT);
-		jbtPause.addActionListener(this); //register action listener
-		canvas.add(jbtPause); //add button to canvas
-		
-		//label showing time left
-		timeLeft = addCustomLabel(Integer.toString(timeleft), Color.black, new Font("MV Boli", Font.BOLD, 50));
-		//Sets bounds of the label
-		timeLeft.setBounds(400, -350, this.getWidth() - 1, this.getHeight() - 1 );
-		canvas.add(timeLeft); //add label to canvas
-		
-		//label showing score
-		score = addCustomLabel("Score: " + points, Color.black, new Font("MV Boli", Font.BOLD, 50));
-		//Sets bounds of the label
-		score.setBounds(725, -350, this.getWidth() - 1, this.getHeight() - 1 );
-		canvas.add(score); //add label to canvas
-		
-		//label showing the difficulty
-		mode = addCustomLabel("Medium", Color.black, new Font("MV Boli", Font.BOLD, 50));
-		//Sets bounds of the label
-		mode.setBounds(780, 325, this.getWidth() - 1, this.getHeight() - 1 );
-		canvas.add(mode); //add label to canvas
-		
-		Mole m1 = new Mole();
-		m1.setBounds(100, 200, 100, 90);
-		canvas.add(m1);
-		
-		Mole m2 = new Mole();
-		m2.setBounds(300, 200, 100, 90);
-		canvas.add(m2);
-		
-		Mole m3 = new Mole();
-		m3.setBounds(500, 200, 100, 90);
-		canvas.add(m3);
-		
-		Mole m4 = new Mole();
-		m4.setBounds(700, 200, 100, 90);
-		canvas.add(m4);
-		
-		Mole m5 = new Mole();
-		m5.setBounds(150, 350, 100, 90);
-		canvas.add(m5);
-		
-		Mole m6 = new Mole();
-		m6.setBounds(350, 350, 100, 90);
-		canvas.add(m6);
-		
-		Mole m7 = new Mole();
-		m7.setBounds(550, 350, 100, 90);
-		canvas.add(m7);
-		
-		Mole m8 = new Mole();
-		m8.setBounds(750, 350, 100, 90);
-		canvas.add(m8);
-		
-		Mole m9 = new Mole();
-		m9.setBounds(100, 500, 100, 90);
-		canvas.add(m9);
-		
-		Mole m10 = new Mole();
-		m10.setBounds(300, 500, 100, 90);
-		canvas.add(m10);
-		
-		Mole m11 = new Mole();
-		m11.setBounds(500, 500, 100, 90);
-		canvas.add(m11);
-		
-		Mole m12 = new Mole();
-		m12.setBounds(700, 500, 100, 90);
-		canvas.add(m12);
-		
-	}//end of MediumPlayScreen constructor
+		bg = new ImageIcon("images/bgPlay.jpg");
 
-	/**
-	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
-	 */
+		headingLabel = addCustomLabel("     Easy: Score: " + points + "     Time left: " + timeLeft + " seconds", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 35));
+		headingPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		headingPanel.setBackground(BG_COLOR);
+		jbtPause = addCustomButton("||", 10, 10, 75, 75, MEDIUMPLAY_COLOR_FG, MEDIUMPLAY_COLOR_BG, MEDIUMPLAY_FONT);
+		jbtPause.addActionListener(this); //register action listener
+		headingPanel.add(jbtPause);
+		headingPanel.add(headingLabel);
+		this.add(headingPanel, BorderLayout.NORTH);
+		
+		grid = new PaintPanel();
+		grid.setLayout(null);
+		for(int i = 0; i < moles.length; i++) {
+			moles[i] = new Mole();
+			moles[i].addActionListener(this);
+			grid.add(moles[i]);
+		}
+		moles[0].setBounds(100, 200, 100, 90);
+		moles[1].setBounds(300, 200, 100, 90);
+		moles[2].setBounds(500, 200, 100, 90);
+		moles[3].setBounds(700, 200, 100, 90);
+		moles[4].setBounds(150, 350, 100, 90);
+		moles[5].setBounds(350, 350, 100, 90);
+		moles[6].setBounds(550, 350, 100, 90);
+		moles[7].setBounds(750, 350, 100, 90);
+		moles[8].setBounds(100, 500, 100, 90);
+		moles[9].setBounds(300, 500, 100, 90);
+		moles[10].setBounds(500, 500, 100, 90);
+		moles[11].setBounds(700, 500, 100, 90);
+		
+		this.add(grid, BorderLayout.CENTER);
+        
+		//pre-set some moles
+        moles[4].setUp();
+        moles[7].setUp();
+        moles[2].setUp();
+
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jbtPause) {
 			new PauseScreen();
-			this.dispose();
 		}
+		else {
+			for(int i = 0; i < 9; i++) {
+				if(e.getSource() == moles[i] && moles[i].isUp) {
+					points++;
+					int hole;
+					do {
+						hole = (int)(Math.random() * 9);
+					}while(moles[hole].isUp); //keep generating random holes if the mole on that hole is already up (no duplicates)
+					moles[hole].setUp();
+					moles[i].setDown();
+					headingLabel.setText("     EASY: Score: " + points + "     Time left: " + timeLeft + " seconds");
+					break;
+				}
+			}
+		}
+	}
 
-	}//end of actionPerformed method
-	
 	/*
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
 	 * PaintPanel is added to the JFrame.
 	 */
 	class PaintPanel extends JPanel{
 		protected void paintComponent(Graphics g){
-			//Prints the canvas that holds the buttons and label
-			super.paintComponent(g);
-			
+			super.paintComponent(g); //override the paintComponent method
+			//draw the background image
+			g.drawImage(bg.getImage(),0,0,this.getWidth(),this.getHeight(),null);
 		}//end of paintComponent method
 	}
 }
