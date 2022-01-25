@@ -7,7 +7,7 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class EasyPlayScreen extends ScreenFrame implements ActionListener{
-	public static int points = 0, timeLeft = 6;
+	public static int points = 0, timeLeft = 60;
 	private ImageIcon bg;
 	private JLabel scorelbl, timelbl;
 	private JPanel headingPanel;
