@@ -58,6 +58,7 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 		if(e.getSource() == jbtPlayAgain) {
 			new DifficultyScreen();
 			clearScores();
+			resetTime();
 			this.dispose();
 		}
 
@@ -65,6 +66,7 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 			//create new instance of MenuScreen class
 			new MenuScreen();
 			clearScores();
+			resetTime();
 			this.dispose(); //get rid of current frame
 		}
 
@@ -80,6 +82,12 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 		else if (DifficultyScreen.diff == 3){
 			points = score;
 		}
+	}
+	
+	public static void resetTime() {
+		EasyPlayScreen.timeLeft = 60;
+		MediumPlayScreen.timeLeft = 60;
+		HardPlayScreen.timeLeft = 60;
 	}
 	
 	public static void clearScores() {
