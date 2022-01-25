@@ -11,10 +11,11 @@ import javax.swing.*;
 public class PauseScreen extends ScreenFrame implements ActionListener{
 	private JButton jbtResume, jbtEndGame;
 	private PaintPanel canvas = new PaintPanel(); //all components are put on a PaintPanel which holds the background image (bg)
-	private JLabel label, timeLeft, score; //text label
+	private JLabel label, scorelbl, timelbl; //text label
 	private final Color PAUSE_COLOR_FG = Color.blue, PAUSE_COLOR_BG = Color.cyan; //constant colors of button foreground and background respectively
 	private final Font PAUSE_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of buttons
-	public static int points; 
+	public static int points, timeLeft; 
+	private JPanel headingPanel;
 	
 	//Constructor for PauseScreen:
 	PauseScreen(){
@@ -25,34 +26,28 @@ public class PauseScreen extends ScreenFrame implements ActionListener{
 		this.add(canvas); //add canvas to PauseScreen
 		
 		
-		//label showing time left
-		timeLeft = addCustomLabel("60", Color.black, new Font("MV Boli", Font.BOLD, 50));
-		//Sets bounds of the label
-		timeLeft.setBounds(400, -350, this.getWidth() - 1, this.getHeight() - 1 );
-		canvas.add(timeLeft); //add label to canvas
-		
-		//label showing score
-		score = addCustomLabel("Score: " + points, Color.black, new Font("MV Boli", Font.BOLD, 50));
-		//Sets bounds of the label
-		score.setBounds(725, -350, this.getWidth() - 1, this.getHeight() - 1 );
-		canvas.add(score); //add label to canvas
-		
 
 		label = addCustomLabel("Paused", Color.black, new Font("MV Boli", Font.BOLD, 50));
 		//Sets bounds of the label
 		label.setBounds(375, -200, this.getWidth() - 1, this.getHeight() - 1 );
 		canvas.add(label); //add label to canvas
 		
+		scorelbl = addCustomLabel("    Score: " + points, Color.cyan, new Font("Comic Sans MS", Font.BOLD, 35));
+		timelbl = addCustomLabel("    Time left: " + timeLeft + " seconds", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 35));
 		
-		
+		headingPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		headingPanel.setBackground(BG_COLOR);
+		headingPanel.add(scorelbl);
+		headingPanel.add(timelbl);
+		this.add(headingPanel, BorderLayout.NORTH);
 		
 		//Add custom button to resume mode
-		jbtResume = addCustomButton("Resume", 50, 650, 200, 80, PAUSE_COLOR_FG, PAUSE_COLOR_BG, PAUSE_FONT);
+		jbtResume = addCustomButton("Resume", 50, 600, 200, 80, PAUSE_COLOR_FG, PAUSE_COLOR_BG, PAUSE_FONT);
 		jbtResume.addActionListener(this); //register action listener
 		canvas.add(jbtResume); //add button to canvas
 		
 		//Add custom button to end the game
-		jbtEndGame = addCustomButton("End Game", 750, 650, 200, 80, PAUSE_COLOR_FG, PAUSE_COLOR_BG, PAUSE_FONT);
+		jbtEndGame = addCustomButton("End Game", 750, 600, 200, 80, PAUSE_COLOR_FG, PAUSE_COLOR_BG, PAUSE_FONT);
 		jbtEndGame.addActionListener(this); //register action listener
 		canvas.add(jbtEndGame); //add button to canvas
 		
@@ -82,6 +77,30 @@ public class PauseScreen extends ScreenFrame implements ActionListener{
 		}
 
 	}//end of actionPerformed method
+	
+	public static void getTime(int time) {
+		if (DifficultyScreen.diff == 1){
+			timeLeft = time;
+		}
+		else if (DifficultyScreen.diff == 2){
+			timeLeft = time;
+		}
+		else if (DifficultyScreen.diff == 3){
+			timeLeft = time;
+		}
+	}
+	
+	public static void getPoints(int score) {
+		if (DifficultyScreen.diff == 1){
+			points = score;
+		}
+		else if (DifficultyScreen.diff == 2){
+			points = score;
+		}
+		else if (DifficultyScreen.diff == 3){
+			points = score;
+		}
+	}
 	
 	/*
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
