@@ -60,6 +60,7 @@ public class EasyPlayScreen extends ScreenFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jbtPause) {
 			new PauseScreen();
+			this.dispose();
 		}
 		else {
 			for(int i = 0; i < 9; i++) {
