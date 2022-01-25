@@ -57,12 +57,14 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jbtPlayAgain) {
 			new DifficultyScreen();
+			clearScores();
 			this.dispose();
 		}
 
 		else if(e.getSource() == jbtMenu) {
 			//create new instance of MenuScreen class
 			new MenuScreen();
+			clearScores();
 			this.dispose(); //get rid of current frame
 		}
 
@@ -78,6 +80,12 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 		else if (DifficultyScreen.diff == 3){
 			points = score;
 		}
+	}
+	
+	public static void clearScores() {
+		EasyPlayScreen.points = 0;
+		MediumPlayScreen.points = 0;
+		HardPlayScreen.points = 0;
 	}
 	
 	/*
