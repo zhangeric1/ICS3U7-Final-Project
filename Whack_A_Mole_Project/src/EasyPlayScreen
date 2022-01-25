@@ -25,9 +25,7 @@ public class EasyPlayScreen extends ScreenFrame implements ActionListener{
 	JButton jbtPause;
 
 	public EasyPlayScreen() {
-		bg = new ImageIcon("images/bgEasy.jpg");
-
-		this.setLayout(new BorderLayout());
+		bg = new ImageIcon("images/bgPlay.jpg");
 
 		headingLabel = addCustomLabel("     Easy: Score: " + points + "     Time left: " + timeLeft + " seconds", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 35));
 		headingPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -45,17 +43,15 @@ public class EasyPlayScreen extends ScreenFrame implements ActionListener{
 			moles[i].addActionListener(this);
 			grid.add(moles[i]);
 		}
-		moles[0].setBounds(100, 50, 200, 180);
-		moles[1].setBounds(100, 260, 200, 180);
-		moles[2].setBounds(100, 470, 200, 180);
-		
-		moles[3].setBounds(400, 50, 200, 180);
-		moles[4].setBounds(400, 260, 200, 180);
-		moles[5].setBounds(400, 470, 200, 180);
-		
-		moles[6].setBounds(700, 50, 200, 180);
-		moles[7].setBounds(700, 260, 200, 180);
-		moles[8].setBounds(700, 470, 200, 180);
+		moles[0].setBounds(150, 200, 100, 90);
+		moles[1].setBounds(450, 200, 100, 90);
+		moles[2].setBounds(750, 200, 100, 90);
+		moles[3].setBounds(150, 350, 100, 90);
+		moles[4].setBounds(450, 350, 100, 90);
+		moles[5].setBounds(750, 350, 100, 90);
+		moles[6].setBounds(150, 500, 100, 90);
+		moles[7].setBounds(450, 500, 100, 90);
+		moles[8].setBounds(750, 500, 100, 90);
 		
 		this.add(grid, BorderLayout.CENTER);
         
