@@ -4,25 +4,25 @@
 //import necessary packages
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class PauseScreen extends ScreenFrame implements ActionListener{
-	//private ImageIcon bg; //bg will be used once an appropriate image is found
 	private JButton jbtResume, jbtEndGame;
 	private PaintPanel canvas = new PaintPanel(); //all components are put on a PaintPanel which holds the background image (bg)
 	private JLabel label, timeLeft, score; //text label
-	private final Color PAUSE_COLOR_FG = Color.blue, PAUSE_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
-	private final Font PAUSE_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
+	private final Color PAUSE_COLOR_FG = Color.blue, PAUSE_COLOR_BG = Color.cyan; //constant colors of button foreground and background respectively
+	private final Font PAUSE_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of buttons
 	public static int points; 
 	
-	//Constructor for DifficultyScreen:
+	//Constructor for PauseScreen:
 	PauseScreen(){
 		super(); //calls ScreenFrame constructor creating a new ScreenFrame
 		
 		//set layout of canvas so we can add buttons manually
 		canvas.setLayout(null);
-		this.add(canvas); //add canvas to DifficultyScreen
+		this.add(canvas); //add canvas to PauseScreen
 		
 		
 		//label showing time left
@@ -46,17 +46,17 @@ public class PauseScreen extends ScreenFrame implements ActionListener{
 		
 		
 		
-		//Add custom button for medium mode
+		//Add custom button to resume mode
 		jbtResume = addCustomButton("Resume", 50, 650, 200, 80, PAUSE_COLOR_FG, PAUSE_COLOR_BG, PAUSE_FONT);
 		jbtResume.addActionListener(this); //register action listener
 		canvas.add(jbtResume); //add button to canvas
 		
-		//Add custom button to return to menu
+		//Add custom button to end the game
 		jbtEndGame = addCustomButton("End Game", 750, 650, 200, 80, PAUSE_COLOR_FG, PAUSE_COLOR_BG, PAUSE_FONT);
 		jbtEndGame.addActionListener(this); //register action listener
 		canvas.add(jbtEndGame); //add button to canvas
 		
-	}//end of DifficultyScreen constructor
+	}//end of PauseScreen constructor
 
 	/**
 	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
@@ -73,13 +73,12 @@ public class PauseScreen extends ScreenFrame implements ActionListener{
 			else if (DifficultyScreen.diff == 3){
 				new HardPlayScreen();
 			}
-			this.dispose();
+			this.dispose();//get rid of current window
 		}
 
 		else if(e.getSource() == jbtEndGame) {
-			//create new instance of MenuScreen class
 			new EndGameScreen();
-			this.dispose(); //get rid of current frame
+			this.dispose();
 		}
 
 	}//end of actionPerformed method
