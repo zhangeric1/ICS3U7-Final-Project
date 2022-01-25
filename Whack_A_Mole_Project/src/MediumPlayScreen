@@ -1,5 +1,4 @@
-/**
- * This is our play screen for the medium difficulty, the user can pause and return to menu using the pause button
+* This is our play screen for the medium difficulty, the user can pause and return to menu using the pause button
  */
 //import necessary packages
 import java.awt.*;
@@ -14,8 +13,8 @@ public class MediumPlayScreen extends ScreenFrame implements ActionListener{
 	private JLabel headingLabel;
 	private JPanel headingPanel;
 	private JPanel grid;
-	private final Color MEDIUMPLAY_COLOR_FG = Color.blue, MEDIUMPLAY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
-	private final Font MEDIUMPLAY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
+	private final Color MEDIUMPLAY_COLOR_FG = Color.blue, MEDIUMPLAY_COLOR_BG = Color.cyan; //constant colors of button foreground and background respectively
+	private final Font MEDIUMPLAY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of buttons
 	Mole[] moles = new Mole[12];
 	int time = 60;
 	JButton jbtPause;
@@ -69,20 +68,21 @@ public class MediumPlayScreen extends ScreenFrame implements ActionListener{
 			this.dispose();
 		}
 		else {
-			for(int i = 0; i < 9; i++) {
+			for(int i = 0; i < 12; i++) {
 				if(e.getSource() == moles[i] && moles[i].isUp) {
 					points++;
 					int hole;
 					do {
-						hole = (int)(Math.random() * 9);
+						hole = (int)(Math.random() * 12);
 					}while(moles[hole].isUp); //keep generating random holes if the mole on that hole is already up (no duplicates)
 					moles[hole].setUp();
 					moles[i].setDown();
-					headingLabel.setText("     EASY: Score: " + points + "     Time left: " + timeLeft + " seconds");
+					headingLabel.setText("     MEDIUM: Score: " + points + "     Time left: " + timeLeft + " seconds");
 					break;
 				}
 			}
 		}
+		EndGameScreen.getPoints(points);
 	}
 
 	/*
