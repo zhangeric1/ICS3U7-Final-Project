@@ -1,5 +1,5 @@
 /**
-* This is our play screen for the medium difficulty, the user can pause and return to menu using the pause button
+ * This is our play screen for the medium difficulty, the user can pause and return to menu using the pause button
  */
 //import necessary packages
 import java.awt.*;
@@ -11,27 +11,33 @@ import javax.swing.*;
 public class MediumPlayScreen extends ScreenFrame implements ActionListener{
 	public static int points = 0, timeLeft = 60;
 	private ImageIcon bg;
-	private JLabel headingLabel;
+	private JLabel scorelbl, timelbl;
 	private JPanel headingPanel;
 	private JPanel grid;
 	private final Color MEDIUMPLAY_COLOR_FG = Color.blue, MEDIUMPLAY_COLOR_BG = Color.cyan; //constant colors of button foreground and background respectively
 	private final Font MEDIUMPLAY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of buttons
 	Mole[] moles = new Mole[12];
-	int time = 60;
+	private Timer timer;
 	JButton jbtPause;
 	
 	//Constructor for MediumPlayScreen:
 	MediumPlayScreen(){
 		bg = new ImageIcon("images/bgPlay.jpg");
-
-		headingLabel = addCustomLabel("     Medium: Score: " + points + "     Time left: " + timeLeft + " seconds", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 35));
+		
+		scorelbl = addCustomLabel("    Score: " + points, Color.cyan, new Font("Comic Sans MS", Font.BOLD, 35));
+		timelbl = addCustomLabel("    Time left: " + timeLeft + " seconds", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 35));
+		
 		headingPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		headingPanel.setBackground(BG_COLOR);
 		jbtPause = addCustomButton("||", 10, 10, 75, 75, MEDIUMPLAY_COLOR_FG, MEDIUMPLAY_COLOR_BG, MEDIUMPLAY_FONT);
 		jbtPause.addActionListener(this); //register action listener
 		headingPanel.add(jbtPause);
-		headingPanel.add(headingLabel);
+		headingPanel.add(scorelbl);
+		headingPanel.add(timelbl);
 		this.add(headingPanel, BorderLayout.NORTH);
+		
+		timer();
+		timer.start();
 		
 		grid = new PaintPanel();
 		grid.setLayout(null);
@@ -78,12 +84,30 @@ public class MediumPlayScreen extends ScreenFrame implements ActionListener{
 					}while(moles[hole].isUp); //keep generating random holes if the mole on that hole is already up (no duplicates)
 					moles[hole].setUp();
 					moles[i].setDown();
-					headingLabel.setText("     MEDIUM: Score: " + points + "     Time left: " + timeLeft + " seconds");
+					scorelbl.setText("    Score: " + points);
 					break;
 				}
 			}
 		}
+		//Gather information for the pause and endgame screens
 		EndGameScreen.getPoints(points);
+		PauseScreen.getPoints(points);
+		PauseScreen.getTime(timeLeft);
+	}
+	
+	public void timer() {//Timer method
+		timer = new Timer(1000, new ActionListener() {//Creates a new timer object
+	        public void actionPerformed(ActionEvent evt) {
+	            if(timeLeft == 0){//when the timer reaches 0
+	            	timelbl.setText("    Time left: " + timeLeft + " seconds");
+	                timer.stop();
+	                new EndGameScreen();//Create the end game screen and dispose this one
+	                dispose();
+	            }
+	            timeLeft--;
+	            timelbl.setText("    Time left: " + timeLeft + " seconds");
+	        }
+	    });
 	}
 
 	/*
