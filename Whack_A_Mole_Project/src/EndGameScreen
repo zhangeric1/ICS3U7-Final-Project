@@ -12,20 +12,22 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 	private JButton jbtPlayAgain, jbtMenu;
 	private PaintPanel canvas = new PaintPanel(); //all components are put on a PaintPanel which holds the background image (bg)
 	private JLabel score, label; //text label
-	private final Color DIFFICULTY_COLOR_FG = Color.blue, DIFFICULTY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
-	private final Font DIFFICULTY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
+	private final Color ENDGAME_COLOR_FG = Color.blue, ENDGAME_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
+	private final Font ENDGAME_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
 	public static int timeleft;
+	private static int highscore;
+	private static int points;
 	
-	//Constructor for DifficultyScreen:
+	//Constructor for EndGameScreen:
 	EndGameScreen(){
 		super(); //calls ScreenFrame constructor creating a new ScreenFrame
 		
 		//set layout of canvas so we can add buttons manually
 		canvas.setLayout(null);
-		this.add(canvas); //add canvas to DifficultyScreen
+		this.add(canvas); //add canvas
 		
 		//Label prompting the user to press a button
-		score = addCustomLabel("Score: " + Mole.points, Color.black, new Font("MV Boli", Font.BOLD, 50));
+		score = addCustomLabel("Score: " + points, Color.black, new Font("MV Boli", Font.BOLD, 50));
 		//Sets bounds of the label
 		score.setBounds(400, -200, this.getWidth() - 1, this.getHeight() - 1 );
 		canvas.add(score); //add label to canvas
@@ -36,17 +38,17 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 		canvas.add(label); //add label to canvas
 		
 		
-		//Add custom button for medium mode
-		jbtPlayAgain = addCustomButton("Play Again", 50, 650, 200, 80, DIFFICULTY_COLOR_FG, DIFFICULTY_COLOR_BG, DIFFICULTY_FONT);
+		//Add custom button to play again
+		jbtPlayAgain = addCustomButton("Play Again", 50, 650, 200, 80, ENDGAME_COLOR_FG, ENDGAME_COLOR_BG, ENDGAME_FONT);
 		jbtPlayAgain.addActionListener(this); //register action listener
 		canvas.add(jbtPlayAgain); //add button to canvas
 		
 		//Add custom button to return to menu
-		jbtMenu = addCustomButton("Menu", 750, 650, 200, 80, DIFFICULTY_COLOR_FG, DIFFICULTY_COLOR_BG, DIFFICULTY_FONT);
+		jbtMenu = addCustomButton("Menu", 750, 650, 200, 80, ENDGAME_COLOR_FG, ENDGAME_COLOR_BG, ENDGAME_FONT);
 		jbtMenu.addActionListener(this); //register action listener
 		canvas.add(jbtMenu); //add button to canvas
 		
-	}//end of DifficultyScreen constructor
+	}//end of EndGameScreen constructor
 
 	/**
 	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
@@ -65,6 +67,18 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 		}
 
 	}//end of actionPerformed method
+	
+	public static void getPoints(int score) {
+		if (DifficultyScreen.diff == 1){
+			points = score;
+		}
+		else if (DifficultyScreen.diff == 2){
+			points = score;
+		}
+		else if (DifficultyScreen.diff == 3){
+			points = score;
+		}
+	}
 	
 	/*
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
