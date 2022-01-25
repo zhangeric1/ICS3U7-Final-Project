@@ -12,8 +12,8 @@ public class EasyPlayScreen extends ScreenFrame implements ActionListener{
 	private JLabel headingLabel;
 	private JPanel headingPanel;
 	private JPanel grid;
-	private final Color EASYPLAY_COLOR_FG = Color.blue, EASYPLAY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
-	private final Font EASYPLAY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
+	private final Color EASYPLAY_COLOR_FG = Color.blue, EASYPLAY_COLOR_BG = Color.cyan; //constant colors of button foreground and background respectively
+	private final Font EASYPLAY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of buttons
 	Mole[] moles = new Mole[9];
 	int time = 60;
 	JButton jbtPause;
@@ -77,6 +77,7 @@ public class EasyPlayScreen extends ScreenFrame implements ActionListener{
 				}
 			}
 		}
+		EndGameScreen.getPoints(points);
 	}
 
 	/*
