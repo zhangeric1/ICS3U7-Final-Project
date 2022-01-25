@@ -1,11 +1,9 @@
-/**
- * This is our difficulty selection screen. After selecting a difficulty level, the user is moved into that game mode.
+* This is our difficulty selection screen. After selecting a difficulty level, the user is moved into that game mode.
  * The user can also choose to move back to the main menu.
  */
 //import necessary packages
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -61,17 +59,17 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 			new EasyPlayScreen();
 			this.dispose();
 		}
-		else if(e.getSource() == jbtMedium) {
+		if(e.getSource() == jbtMedium) {
 			diff = 2;
 			new MediumPlayScreen();
 			this.dispose();
 		}
-		else if(e.getSource() == jbtHard) {
+		if(e.getSource() == jbtHard) {
 			diff = 3;
 			new HardPlayScreen();
 			this.dispose();
 		}
-		else if(e.getSource() == jbtMenu) {
+		if(e.getSource() == jbtMenu) {
 			//create new instance of MenuScreen class
 			new MenuScreen();
 			this.dispose(); //get rid of current frame
