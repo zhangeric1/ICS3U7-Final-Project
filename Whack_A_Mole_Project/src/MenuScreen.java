@@ -4,7 +4,6 @@
 //import necessary packages
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -15,6 +14,7 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 	private JLabel heading, labelGif; //the heading label of the Main Menu and the label that will hold bgGif
 	private static final Color MENU_COLOR_FG = Color.blue, MENU_COLOR_BG = Color.cyan; //constant colors of menu button foreground and background respectively
 	private static final Font MENU_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of menu buttons
+	
 	
 	//Constructor for MenuScreen
 	MenuScreen(){		
