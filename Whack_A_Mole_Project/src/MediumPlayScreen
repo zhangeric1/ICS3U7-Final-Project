@@ -24,7 +24,7 @@ public class MediumPlayScreen extends ScreenFrame implements ActionListener{
 	MediumPlayScreen(){
 		bg = new ImageIcon("images/bgPlay.jpg");
 
-		headingLabel = addCustomLabel("     Easy: Score: " + points + "     Time left: " + timeLeft + " seconds", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 35));
+		headingLabel = addCustomLabel("     Medium: Score: " + points + "     Time left: " + timeLeft + " seconds", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 35));
 		headingPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		headingPanel.setBackground(BG_COLOR);
 		jbtPause = addCustomButton("||", 10, 10, 75, 75, MEDIUMPLAY_COLOR_FG, MEDIUMPLAY_COLOR_BG, MEDIUMPLAY_FONT);
@@ -66,6 +66,7 @@ public class MediumPlayScreen extends ScreenFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jbtPause) {
 			new PauseScreen();
+			this.dispose();
 		}
 		else {
 			for(int i = 0; i < 9; i++) {
