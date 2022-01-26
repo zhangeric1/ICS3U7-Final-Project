@@ -85,10 +85,6 @@ public class EasyPlayScreen extends ScreenFrame implements ActionListener{
 				}
 			}
 		}
-		//Gather information for the pause and endgame screens
-		EndGameScreen.getPoints(points);
-		PauseScreen.getPoints(points);
-		PauseScreen.getTime(timeLeft);
 	}
 	
 	public void timer() {//Timer method
