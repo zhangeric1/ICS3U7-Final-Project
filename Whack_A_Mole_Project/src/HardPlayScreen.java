@@ -76,6 +76,7 @@ public class HardPlayScreen extends ScreenFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jbtPause) {
 			new PauseScreen();
+			timer.stop();
 			this.dispose();
 		}
 		else {
@@ -102,11 +103,11 @@ public class HardPlayScreen extends ScreenFrame implements ActionListener{
 						hole = (int)(Math.random() * 16);
 					}while(moles[hole].isUp); //keep generating random holes if the mole on that hole is already up (no duplicates)
 					
-					int type = (int)((Math.random() * 5) + 1);
-					if(type <= 3) {
+					int type = (int)((Math.random() * 100) + 1);
+					if(type <= 70) {
 						moles[hole].setNormal();
 					}
-					else if(type <= 4) {
+					else if(type >= 85) {
 						moles[hole].setSuper();
 					}
 					else {
