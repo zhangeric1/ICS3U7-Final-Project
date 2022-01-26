@@ -66,9 +66,7 @@ public class HardPlayScreen extends ScreenFrame implements ActionListener{
 			this.add(grid, BorderLayout.CENTER);
 	        
 			//pre-set some moles
-	        moles[4].setUp();
-	        moles[7].setUp();
-	        moles[2].setUp();
+	        MoleRandomizer();
 
 		}
 
@@ -137,7 +135,22 @@ public class HardPlayScreen extends ScreenFrame implements ActionListener{
 		        }
 		    });
 		}
-
+		
+		private void MoleRandomizer() {//randomizes the placements of the moles
+			int a;
+			int b;
+			int c;
+			do {
+				a = (int) (Math.random()*9);
+				b = (int) (Math.random()*9);
+				c = (int) (Math.random()*9);
+			}while(a == b || b == c || c == a);//while two of the values oare the same continue randomizing until all 3 are different
+			
+			
+			moles[a].setUp();
+	        moles[b].setUp();
+	        moles[c].setUp();
+		}
 
 		/*
 		 * This class is a canvas that draws the background image. All components are added to this Panel, then the
