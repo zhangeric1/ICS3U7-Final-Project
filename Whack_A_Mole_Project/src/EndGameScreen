@@ -1,4 +1,5 @@
-* This is our play screen for the hard difficulty, the user can pause and return to menu using the pause button
+/**
+ *  This is our play screen for the hard difficulty, the user can pause and return to menu using the pause button
  */
 //import necessary packages
 import java.awt.*;
@@ -141,4 +142,3 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 			
 		}//end of paintComponent method
 	}
-}
