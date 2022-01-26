@@ -144,7 +144,7 @@ public class HardPlayScreen extends ScreenFrame implements ActionListener{
 				a = (int) (Math.random()*9);
 				b = (int) (Math.random()*9);
 				c = (int) (Math.random()*9);
-			}while(a == b || b == c || c == a);//while two of the values are the same continue randomizing until all 3 are different
+			}while(a == b || b == c || c == a);//while two of the values oare the same continue randomizing until all 3 are different
 			
 			
 			moles[a].setUp();

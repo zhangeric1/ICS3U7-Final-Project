@@ -23,7 +23,7 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 		this.setLayout(null);
 		
 		//Label prompting the user to press a button
-		label = addCustomLabel("Select The Difficulty", Color.cyan, new Font("MV Boli", Font.BOLD, 50));
+		label = addCustomLabel("Select The Difficulty", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 50));
 		//Sets bounds of the label
 		label.setBounds(100, -200, this.getWidth() - 1, this.getHeight() - 1 );
 		this.add(label); //add label to frame
