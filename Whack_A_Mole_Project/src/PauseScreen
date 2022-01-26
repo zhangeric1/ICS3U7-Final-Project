@@ -32,6 +32,10 @@ public class PauseScreen extends ScreenFrame implements ActionListener{
 		label.setBounds(375, -200, this.getWidth() - 1, this.getHeight() - 1 );
 		canvas.add(label); //add label to canvas
 		
+		//Get the time and score from the play screen
+		getTime();
+		getPoints();
+		
 		scorelbl = addCustomLabel("    Score: " + points, Color.cyan, new Font("Comic Sans MS", Font.BOLD, 35));
 		timelbl = addCustomLabel("    Time left: " + timeLeft + " seconds", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 35));
 		
@@ -78,29 +82,31 @@ public class PauseScreen extends ScreenFrame implements ActionListener{
 
 	}//end of actionPerformed method
 	
-	public static void getTime(int time) {
+	public static void getTime() {
 		if (DifficultyScreen.diff == 1){
-			timeLeft = time;
+			timeLeft = EasyPlayScreen.timeLeft;
 		}
 		else if (DifficultyScreen.diff == 2){
-			timeLeft = time;
+			timeLeft = MediumPlayScreen.timeLeft;
 		}
 		else if (DifficultyScreen.diff == 3){
-			timeLeft = time;
+			timeLeft = HardPlayScreen.timeLeft;
 		}
 	}
 	
-	public static void getPoints(int score) {
+	public static void getPoints() {
 		if (DifficultyScreen.diff == 1){
-			points = score;
+			points = EasyPlayScreen.points;
 		}
 		else if (DifficultyScreen.diff == 2){
-			points = score;
+			points = MediumPlayScreen.points;
 		}
 		else if (DifficultyScreen.diff == 3){
-			points = score;
+			points = HardPlayScreen.points;
 		}
 	}
+	
+
 	
 	/*
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
