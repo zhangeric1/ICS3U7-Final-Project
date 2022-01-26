@@ -27,6 +27,9 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 		canvas.setLayout(null);
 		this.add(canvas); //add canvas
 		
+		//Get score for the play screen
+		getPoints();
+		
 		//Label prompting the user to press a button
 		score = addCustomLabel("Score: " + points, Color.black, new Font("MV Boli", Font.BOLD, 50));
 		//Sets bounds of the label
@@ -68,45 +71,51 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jbtPlayAgain) {
-			new DifficultyScreen();
-			clearScores();
-			resetTime();
+			new DifficultyScreen();//creates a new instance of the Difficulty Screen class
+			resetScore();//reset the score
+			resetTime();//reset the time
 			this.dispose();
 		}
 
 		else if(e.getSource() == jbtMenu) {
 			//create new instance of MenuScreen class
 			new MenuScreen();
-			clearScores();
+			resetScore();
 			resetTime();
 			this.dispose(); //get rid of current frame
 		}
 
 	}//end of actionPerformed method
 	
-	public static void getPoints(int score) {
+	//Method that gets points from the play screen
+	public static void getPoints() {
 		if (DifficultyScreen.diff == 1){
-			points = score;
+			points = EasyPlayScreen.points;
 		}
 		else if (DifficultyScreen.diff == 2){
-			points = score;
+			points = MediumPlayScreen.points;
 		}
 		else if (DifficultyScreen.diff == 3){
-			points = score;
+			points = HardPlayScreen.points;
 		}
 	}
 	
+	//Method that resets the timer
 	public static void resetTime() {
 		EasyPlayScreen.timeLeft = 60;
 		MediumPlayScreen.timeLeft = 60;
 		HardPlayScreen.timeLeft = 60;
 	}
 	
-	public static void clearScores() {
+	
+	//Method that reset's the current game's score for the next game
+	public static void resetScore() {
 		EasyPlayScreen.points = 0;
 		MediumPlayScreen.points = 0;
 		HardPlayScreen.points = 0;
 	}
+	
+	
 	
 	/**
 	 * This method writes a score into a text file
