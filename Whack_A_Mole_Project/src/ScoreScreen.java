@@ -13,7 +13,7 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class ScoreScreen extends ScreenFrame implements ActionListener{
-	private static String easyFile, mediumFile, hardFile; //names of each text file
+	private static String easyFile = "scores/easyFile.txt", mediumFile = "scores/mediumFile.txt", hardFile = "scores/hardFile.txt"; //names of each text file
 	private ArrayList<Integer> easyScores, mediumScores, hardScores; //lists of scores from each text file
 	private JTable easyTable, mediumTable, hardTable; //tables to display scores
 	private JScrollPane easyScrollPane, mediumScrollPane, hardScrollPane; //Scroll panes allow each table to be scrolled through
@@ -24,10 +24,6 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 
 	//Constructor for ScoreScreen
 	public ScoreScreen(){
-		//File names
-		easyFile = "scores/easyFile.txt";
-		mediumFile = "scores/mediumFile.txt";
-		hardFile = "scores/hardFile.txt";
 		//array list of scores. Initialize them with method
 		easyScores = readFileIntoList(easyFile);
 		mediumScores = readFileIntoList(mediumFile);
