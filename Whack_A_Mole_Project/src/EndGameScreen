@@ -4,6 +4,7 @@
 //import necessary packages
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -37,7 +38,6 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 		label.setBounds(400, -350, this.getWidth() - 1, this.getHeight() - 1 );
 		canvas.add(label); //add label to canvas
 		
-		
 		//Add custom button to play again
 		jbtPlayAgain = addCustomButton("Play Again", 50, 650, 200, 80, ENDGAME_COLOR_FG, ENDGAME_COLOR_BG, ENDGAME_FONT);
 		jbtPlayAgain.addActionListener(this); //register action listener
@@ -47,7 +47,19 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 		jbtMenu = addCustomButton("Menu", 750, 650, 200, 80, ENDGAME_COLOR_FG, ENDGAME_COLOR_BG, ENDGAME_FONT);
 		jbtMenu.addActionListener(this); //register action listener
 		canvas.add(jbtMenu); //add button to canvas
-		
+
+		//write score into text files to be stored
+		switch(DifficultyScreen.diff) {//write to appropriate text file based on difficulty level
+		case 1: //easy level
+			writeScoreToFile(ScoreScreen.getEasyFileName(), String.valueOf(EasyPlayScreen.points)); //write score to easy text file
+			break;
+		case 2: //medium level
+			writeScoreToFile(ScoreScreen.getMediumFileName(), String.valueOf(MediumPlayScreen.points)); //write score to medium text file
+			break;
+		case 3: //hard level
+			writeScoreToFile(ScoreScreen.getHardFileName(), String.valueOf(HardPlayScreen.points)); //write score to hard text file
+			break;
+		}
 	}//end of EndGameScreen constructor
 
 	/**
@@ -95,6 +107,24 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 		MediumPlayScreen.points = 0;
 		HardPlayScreen.points = 0;
 	}
+	
+	/**
+	 * This method writes a score into a text file
+	 * @param fileName name of text file
+	 * @param score score to be entered
+	 */
+	public void writeScoreToFile(String fileName, String txt) {
+		try {//append characters to the file
+			BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+			writer.write(txt); //write the new score into the text file
+			writer.newLine(); //write a new line
+			writer.close(); //close writer instance
+		}
+		//catch the IOException
+		catch(IOException iox) {
+			System.out.println("Problem writing " + fileName);
+		}
+	}//end of writeScoreToFile method	
 	
 	/*
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
