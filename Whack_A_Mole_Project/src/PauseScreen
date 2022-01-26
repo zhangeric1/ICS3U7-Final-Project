@@ -4,13 +4,11 @@
 //import necessary packages
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class PauseScreen extends ScreenFrame implements ActionListener{
 	private JButton jbtResume, jbtEndGame;
-	private PaintPanel canvas = new PaintPanel(); //all components are put on a PaintPanel which holds the background image (bg)
 	private JLabel label, scorelbl, timelbl; //text label
 	private final Color PAUSE_COLOR_FG = Color.blue, PAUSE_COLOR_BG = Color.cyan; //constant colors of button foreground and background respectively
 	private final Font PAUSE_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of buttons
@@ -22,15 +20,14 @@ public class PauseScreen extends ScreenFrame implements ActionListener{
 		super(); //calls ScreenFrame constructor creating a new ScreenFrame
 		
 		//set layout of canvas so we can add buttons manually
-		canvas.setLayout(null);
-		this.add(canvas); //add canvas to PauseScreen
+		this.setLayout(null);
 		
 		
 
 		label = addCustomLabel("Paused", Color.black, new Font("MV Boli", Font.BOLD, 50));
 		//Sets bounds of the label
 		label.setBounds(375, -200, this.getWidth() - 1, this.getHeight() - 1 );
-		canvas.add(label); //add label to canvas
+		this.add(label); //add label
 		
 		//Get the time and score from the play screen
 		getTime();
@@ -43,17 +40,18 @@ public class PauseScreen extends ScreenFrame implements ActionListener{
 		headingPanel.setBackground(BG_COLOR);
 		headingPanel.add(scorelbl);
 		headingPanel.add(timelbl);
-		this.add(headingPanel, BorderLayout.NORTH);
+		headingPanel.setBounds(0, 0, 1000, 60);
+		this.add(headingPanel);
 		
 		//Add custom button to resume mode
 		jbtResume = addCustomButton("Resume", 50, 600, 200, 80, PAUSE_COLOR_FG, PAUSE_COLOR_BG, PAUSE_FONT);
 		jbtResume.addActionListener(this); //register action listener
-		canvas.add(jbtResume); //add button to canvas
+		this.add(jbtResume); //add button
 		
 		//Add custom button to end the game
 		jbtEndGame = addCustomButton("End Game", 750, 600, 200, 80, PAUSE_COLOR_FG, PAUSE_COLOR_BG, PAUSE_FONT);
 		jbtEndGame.addActionListener(this); //register action listener
-		canvas.add(jbtEndGame); //add button to canvas
+		this.add(jbtEndGame); //add button to canvas
 		
 	}//end of PauseScreen constructor
 
@@ -114,7 +112,7 @@ public class PauseScreen extends ScreenFrame implements ActionListener{
 	 */
 	class PaintPanel extends JPanel{
 		protected void paintComponent(Graphics g){
-			//Prints the canvas that holds the buttons and label
+			//Displays the buttons and labels
 			super.paintComponent(g);
 			
 		}//end of paintComponent method
