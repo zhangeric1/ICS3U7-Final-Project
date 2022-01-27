@@ -116,7 +116,7 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 
 		//begin adding panels to frame
 		this.add(tablePanel);
-		
+
 		//create infoPanel to display general information
 		infoPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		infoPanel.setBackground(BG_COLOR);
@@ -202,7 +202,7 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 		}
 		return scoreTable;
 	}//end of getTopScoresTableFromFile
-	
+
 	/**
 	 * This method confirms a user's decision to clear a text file, then clears it or cancels based on input.
 	 * @param fileName Name of text file to be cleared
@@ -251,7 +251,7 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 	public static String getEasyFileName() {
 		return easyFile;
 	}//end of getEasyFileName method
-	
+
 	/**
 	 * Getter method for obtaining name of Hard Scores text file
 	 * @return name of text file
@@ -259,7 +259,7 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 	public static String getMediumFileName() {
 		return mediumFile;
 	}//end of getMediumFileName method
-	
+
 	/**
 	 * Getter method for obtaining name of Hard Scores text file
 	 * @return name of text file
@@ -267,5 +267,5 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 	public static String getHardFileName() {
 		return hardFile;
 	} //end of getHardFileName method
-	
+
 }

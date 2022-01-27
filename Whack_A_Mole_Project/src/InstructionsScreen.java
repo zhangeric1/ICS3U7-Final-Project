@@ -1,6 +1,7 @@
 /**
- * This class is the Instructions screen. It has information on controls, game modes, and over all game utility.
+ * This class is the Instructions screen. It has information on controls, game modes, and general game utility.
  */
+//import necessary packages
 import java.awt.*;
 import java.awt.event.*;
 
@@ -11,7 +12,10 @@ public class InstructionsScreen extends ScreenFrame implements ActionListener{
 	private ImageIcon bg; //background image
 	private PaintPanel canvas; //PaintPanel that the background image will be drawn on
 	private JButton jbtMenu; //button to return to menu
-	
+
+	/**
+	 * Constructor for InstructionsScreen
+	 */
 	public InstructionsScreen() {
 		bg = new ImageIcon("images/bgInstructions.png"); //set background image
 		canvas = new PaintPanel();
@@ -22,20 +26,20 @@ public class InstructionsScreen extends ScreenFrame implements ActionListener{
 		jbtMenu.addActionListener(this);
 		//add canvas to JFrame
 		this.add(canvas);
-	}//end of InstructionsScreen contructor
-	
+	}//end of InstructionsScreen constructor
+
 	/**
 	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == jbtMenu) {
-			new MenuScreen();
-			this.dispose();
+		if(e.getSource() == jbtMenu) { //menu button
+			new MenuScreen(); //new MenuScreen instance
+			this.dispose(); //dispose of current frame
 		}
 	}//end of actionPerformed method
-	
-	/*
+
+	/**
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
 	 * PaintPanel is added to the JFrame.
 	 */

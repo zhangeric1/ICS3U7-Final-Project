@@ -1,7 +1,8 @@
 /**
  * This class is a general format for all screens (which will be JFames) in our game. For example, it sets
  * a definite size, default close operation, etc. It also contains general methods for creating custom JButtons
- * and JLabels that all game screens may use.
+ * and JLabels that all game screens may use. This class is an abstract class so we do not create an instance of it 
+ * in our program.
  */
 //import necessary packages
 import java.awt.*;
@@ -11,8 +12,10 @@ import javax.swing.*;
 public abstract class ScreenFrame extends JFrame{
 	//General variables
 	protected static final Color BG_COLOR = new Color(0x394452); //Default background color is visible to subclasses of ScreenFrame
-	
-	//Constructor: Defines state/behavior that all child frames will inherit
+
+	/**
+	 * Constructor for ScreenFrame: Defines state/behavior that all child frames will inherit
+	 */
 	public ScreenFrame() {
 		super("Whack-a-Mole"); //creates a JFrame with specified title
 		this.setSize(1000, 800); //setting size of all game screens
@@ -21,7 +24,7 @@ public abstract class ScreenFrame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //set default close operation
 		this.setVisible(true); //set visible
 	}//end of ScreenFrame constructor
-	
+
 	/**
 	 * This method creates a custom JButton
 	 * @param text Text to be put on button
@@ -43,7 +46,7 @@ public abstract class ScreenFrame extends JFrame{
 		button.setFocusable(false);
 		return button;
 	}//end of addCustomButton method
-	
+
 	/**
 	 * This method creates a custom JButton without x and y coordinates in case the JButton is being 
 	 * placed with a layout manager
@@ -64,7 +67,7 @@ public abstract class ScreenFrame extends JFrame{
 		button.setFocusable(false);
 		return button;
 	}//end of addCustomButton method
-	
+
 	/**
 	 * This method creates a custom JLabel
 	 * @param text Text to be put on label
@@ -78,5 +81,4 @@ public abstract class ScreenFrame extends JFrame{
 		label.setFont(font);
 		return label;
 	}//end of addCustomLabel method
-	
 }
