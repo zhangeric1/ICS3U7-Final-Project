@@ -2,8 +2,12 @@
  * This class is the menu screen of our game. It has 4 buttons that perform different actions (exiting, commencing game, etc.).
  */
 //import necessary packages
-import java.awt.*;
+import java.awt.*; 
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -12,14 +16,49 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 	private ImageIcon bgGif; //background GIF to be put on a label on the main menu
 	private JButton jbtPlay, jbtInstructions, jbtScores, jbtExit; //action buttons
 	private JLabel heading, labelGif; //the heading label of the Main Menu and the label that will hold bgGif
-	private static final Color MENU_COLOR_FG = Color.blue, MENU_COLOR_BG = Color.cyan; //constant colors of menu button foreground and background respectively
-	private static final Font MENU_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of menu buttons
-
+	private final Color MENU_COLOR_FG = Color.blue, MENU_COLOR_BG = Color.cyan; //constant colors of menu button foreground and background respectively
+	private final Font MENU_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of menu buttons
 
 	/**
 	 * Constructor for MenuScreen
 	 */
-	MenuScreen(){		
+	public MenuScreen(){	
+		//*********************************************************************Start of taken code
+		/*This code plays a sound effect when the mole is hit. I took the code from 1st answer on:
+		 * https://stackoverflow.com/questions/15526255/best-way-to-get-sound-on-button-press-for-a-java-calculator
+		 * I edited it using Eclipse's suggestions
+		 */
+		String soundName = "sounds/MainMenu.wav";   
+		AudioInputStream audioInputStream = null;
+		try {
+			audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+		} catch (UnsupportedAudioFileException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		} catch (IOException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		}
+		Clip clip = null;
+		try {
+			clip = AudioSystem.getClip();
+		} catch (LineUnavailableException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		try {
+			clip.open(audioInputStream);
+		} catch (LineUnavailableException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		clip.loop(Clip.LOOP_CONTINUOUSLY);//loops music continuously
+		clip.start();
+		//*************************************************************End of taken code
+		
 		//set layout manager of JFrame as null so we can manually place buttons.
 		this.setLayout(null);
 		//set background color of JFrame

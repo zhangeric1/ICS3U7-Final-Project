@@ -2,8 +2,12 @@
  * This is our hard play screen for the hard difficulty. The user can pause and return to menu using the pause button
  */
 //import necessary packages
-import java.awt.*;
+import java.awt.*; 
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -15,14 +19,14 @@ public class HardPlayScreen extends ScreenFrame implements ActionListener{
 	private JPanel grid; //grid to hold moles
 	private final Color HARDPLAY_COLOR_FG = Color.blue, HARDPLAY_COLOR_BG = Color.cyan; //constant colors of button foreground and background respectively
 	private final Font HARDPLAY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of buttons
-	Mole[] moles = new Mole[16]; //array of 16 moles
+	private Mole[] moles = new Mole[16]; //array of 16 moles
 	private Timer timer; //timer to control game time limit
-	JButton jbtPause; //pause button
+	private JButton jbtPause; //pause button
 
 	/**
 	 * Constructor for HardPlayScreen
 	 */
-	HardPlayScreen(){
+	public HardPlayScreen(){
 		//set the background image
 		bg = new ImageIcon("images/bgPlay.jpg");
 
@@ -75,7 +79,7 @@ public class HardPlayScreen extends ScreenFrame implements ActionListener{
 		this.add(grid, BorderLayout.CENTER);
 
 		//randomly set 3 moles
-		MoleRandomizer();
+		moleRandomizer();
 	}//end of HardPlayScreen constructor
 
 	/**
@@ -89,16 +93,121 @@ public class HardPlayScreen extends ScreenFrame implements ActionListener{
 			this.dispose(); //dispose of current frame
 		}
 		else {//a mole is clicked
+			String soundName; //name of sound file
+			AudioInputStream audioInputStream; //required for playing sound effects
+			Clip clip;//required for playing sound effects
 			for(int i = 0; i < 16; i++) { //check each mole until the clicked mole is found
 				if(e.getSource() == moles[i] && moles[i].isUp) { //if mole is clicked and is up
 					switch(moles[i].getState()) { //get the state of the mole to determine how many points should be incremented/decremented
 					case 1://normal state
+						//*********************************************************************Start of taken code
+						/*This code plays a sound effect when the normal mole is hit. I took the code from 1st answer on:
+						 * https://stackoverflow.com/questions/15526255/best-way-to-get-sound-on-button-press-for-a-java-calculator
+						 * I edited it using Eclipse's suggestions
+						 */
+						soundName = "sounds/NormalMole.wav";   
+						audioInputStream = null;
+						try {
+							audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+						} catch (UnsupportedAudioFileException e3) {
+							// TODO Auto-generated catch block
+							e3.printStackTrace();
+						} catch (IOException e3) {
+							// TODO Auto-generated catch block
+							e3.printStackTrace();
+						}
+						clip = null;
+						try {
+							clip = AudioSystem.getClip();
+						} catch (LineUnavailableException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+						try {
+							clip.open(audioInputStream);
+						} catch (LineUnavailableException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						clip.start();
+						//*************************************************************End of taken code
 						points++;
 						break;
 					case 2: //super state
+						//*********************************************************************Start of taken code
+						/*This code plays a sound effect when the super mole is hit. I took the code from 1st answer on:
+						 * https://stackoverflow.com/questions/15526255/best-way-to-get-sound-on-button-press-for-a-java-calculator
+						 * I edited it using Eclipse's suggestions
+						 */
+						soundName = "sounds/SuperMole.wav";   
+						audioInputStream = null;
+						try {
+							audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+						} catch (UnsupportedAudioFileException e3) {
+							// TODO Auto-generated catch block
+							e3.printStackTrace();
+						} catch (IOException e3) {
+							// TODO Auto-generated catch block
+							e3.printStackTrace();
+						}
+						clip = null;
+						try {
+							clip = AudioSystem.getClip();
+						} catch (LineUnavailableException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+						try {
+							clip.open(audioInputStream);
+						} catch (LineUnavailableException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						clip.start();
+						//*************************************************************End of taken code
 						points += 2;
 						break;
 					case 3: //sabotage state
+						//*********************************************************************Start of taken code
+						/*This code plays a sound effect when the mole is hit. I took the code from 1st answer on:
+						 * https://stackoverflow.com/questions/15526255/best-way-to-get-sound-on-button-press-for-a-java-calculator
+						 * I edited it using Eclipse's suggestions
+						 */
+						soundName = "sounds/SabotageMole.wav";   
+						audioInputStream = null;
+						try {
+							audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+						} catch (UnsupportedAudioFileException e3) {
+							// TODO Auto-generated catch block
+							e3.printStackTrace();
+						} catch (IOException e3) {
+							// TODO Auto-generated catch block
+							e3.printStackTrace();
+						}
+						clip = null;
+						try {
+							clip = AudioSystem.getClip();
+						} catch (LineUnavailableException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+						try {
+							clip.open(audioInputStream);
+						} catch (LineUnavailableException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						clip.start();
+						//*************************************************************End of taken code
 						if(points >= 2) { //if points are greater or equal to 2, decrement 2
 							points -= 2;
 						}
@@ -137,7 +246,7 @@ public class HardPlayScreen extends ScreenFrame implements ActionListener{
 	/**
 	 * This method determines a random placement of 3 moles
 	 */
-	private void MoleRandomizer() {
+	private void moleRandomizer() {
 		int m1; //random moles
 		int m2;
 		int m3;
@@ -150,7 +259,7 @@ public class HardPlayScreen extends ScreenFrame implements ActionListener{
 		moles[m1].setUp(); //set up moles
 		moles[m2].setUp();
 		moles[m3].setUp();
-	}//end of MoleRandomizer method
+	}//end of moleRandomizer method
 	
 	/**
 	 * This method is a timer for controlling the time limit of our game

@@ -1,9 +1,14 @@
 /**
  * This is our play screen for the easy difficulty. The user can pause and return to menu using the pause button
  */
-import java.awt.*;
+import java.awt.*; 
 import java.awt.event.*;
 import javax.swing.*;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.*;
 
 @SuppressWarnings("serial")
 public class EasyPlayScreen extends ScreenFrame implements ActionListener{
@@ -14,9 +19,9 @@ public class EasyPlayScreen extends ScreenFrame implements ActionListener{
 	private JPanel grid; //grid to hold moles
 	private final Color EASYPLAY_COLOR_FG = Color.blue, EASYPLAY_COLOR_BG = Color.cyan; //constant colors of button foreground and background respectively
 	private final Font EASYPLAY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of buttons
-	Mole[] moles = new Mole[9]; //array of 9 moles
+	private Mole[] moles = new Mole[9]; //array of 9 moles
 	private Timer timer; //timer to control time limit of game
-	JButton jbtPause; //pause button
+	private JButton jbtPause; //pause button
 
 	/**
 	 * Constructor for EasyPlayScreen
@@ -65,7 +70,7 @@ public class EasyPlayScreen extends ScreenFrame implements ActionListener{
 		this.add(grid, BorderLayout.CENTER); //add grid to center of frame
 
 		//Set mole up randomly
-		MoleRandomizer();
+		moleRandomizer();
 	}//end of EasyPlayScreen constructor
 
 	/**
@@ -81,6 +86,40 @@ public class EasyPlayScreen extends ScreenFrame implements ActionListener{
 		else { //a mole is clicked
 			for(int i = 0; i < 9; i++) { //check each mole until clicked mole is found
 				if(e.getSource() == moles[i] && moles[i].isUp) {//if mole is clicked and is up
+					//*********************************************************************Start of taken code
+					/*This code plays a sound effect when the mole is hit. I took the code from 1st answer on:
+					 * https://stackoverflow.com/questions/15526255/best-way-to-get-sound-on-button-press-for-a-java-calculator
+					 * I edited it using Eclipse's suggestions
+					 */
+					String soundName = "sounds/NormalMole.wav";   
+					AudioInputStream audioInputStream = null;
+					try {
+						audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+					} catch (UnsupportedAudioFileException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+					} catch (IOException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+					}
+					Clip clip = null;
+					try {
+						clip = AudioSystem.getClip();
+					} catch (LineUnavailableException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					try {
+						clip.open(audioInputStream);
+					} catch (LineUnavailableException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					clip.start();
+					//*************************************************************End of taken code
 					points++; //increment points
 					int hole; //random hole for next mole to appear from
 					//loop to generate random hole location
@@ -99,11 +138,11 @@ public class EasyPlayScreen extends ScreenFrame implements ActionListener{
 	/**
 	 * This method determines a random placement of a mole
 	 */
-	private void MoleRandomizer() {
+	private void moleRandomizer() {
 		int m; //random mole
 		m = (int)(Math.random() * 9); //determines random mole to pop up
 		moles[m].setUp(); //sets the random mole up
-	}//end of MoleRandomizer method
+	}//end of moleRandomizer method
 	
 	/**
 	 * This method is a timer for controlling the time limit of our game

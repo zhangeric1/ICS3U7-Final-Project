@@ -12,14 +12,14 @@ public class DifficultyScreen extends ScreenFrame implements ActionListener{
 	//Instance variables
 	private JButton jbtEasy, jbtMedium, jbtHard, jbtMenu; //buttons for different actions
 	private JLabel label; //text label
-	private static final Color DIFFICULTY_COLOR_FG = Color.blue, DIFFICULTY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
-	private static final Font DIFFICULTY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
+	private final Color DIFFICULTY_COLOR_FG = Color.blue, DIFFICULTY_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
+	private final Font DIFFICULTY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
 	public static int diff; //variable to store the difficulty levelfor later use
 
 	/**
 	 * Constructor for DifficultyScreen
 	 */
-	DifficultyScreen(){		
+	public DifficultyScreen(){		
 		//set background color of frame
 		this.getContentPane().setBackground(BG_COLOR);
 		//set layout of frame to null so we can add buttons manually

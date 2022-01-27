@@ -18,7 +18,7 @@ public class PauseScreen extends ScreenFrame implements ActionListener{
 	/**
 	 * Constructor for PauseScreen:
 	 */
-	PauseScreen(){
+	public PauseScreen(){
 		//set layout of canvas so we can add buttons manually
 		this.setLayout(null);
 		this.getContentPane().setBackground(BG_COLOR); //set background color of frame

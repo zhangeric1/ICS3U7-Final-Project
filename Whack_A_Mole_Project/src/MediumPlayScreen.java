@@ -4,6 +4,10 @@
 //import necessary packages
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -15,14 +19,14 @@ public class MediumPlayScreen extends ScreenFrame implements ActionListener{
 	private JPanel grid; //grid to hold moles
 	private final Color MEDIUMPLAY_COLOR_FG = Color.blue, MEDIUMPLAY_COLOR_BG = Color.cyan; //constant colors of button foreground and background respectively
 	private final Font MEDIUMPLAY_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of buttons
-	Mole[] moles = new Mole[12]; //array of 12 moles
+	private Mole[] moles = new Mole[12]; //array of 12 moles
 	private Timer timer; //timer to control game time limit
-	JButton jbtPause; //pause button
+	private JButton jbtPause; //pause button
 
 	/**
 	 * Constructor for MediumPlayScreen
 	 */
-	MediumPlayScreen(){
+	public MediumPlayScreen(){
 		//set background image
 		bg = new ImageIcon("images/bgPlay.jpg");
 
@@ -69,7 +73,7 @@ public class MediumPlayScreen extends ScreenFrame implements ActionListener{
 		this.add(grid, BorderLayout.CENTER); //add grid to center of frame
 
 		//set 2 moles up randomly
-		MoleRandomizer();
+		moleRandomizer();
 	}//end of MediumPlayScreen constructor
 
 	/**
@@ -85,6 +89,40 @@ public class MediumPlayScreen extends ScreenFrame implements ActionListener{
 		else { //a mole is clicked
 			for(int i = 0; i < 12; i++) { //check each mole until clicked mole is found
 				if(e.getSource() == moles[i] && moles[i].isUp) {//if mole is clicked and is up
+					//*********************************************************************Start of taken code
+					/*This code plays a sound effect when the mole is hit. I took the code from 1st answer on:
+					 * https://stackoverflow.com/questions/15526255/best-way-to-get-sound-on-button-press-for-a-java-calculator
+					 * I edited it using Eclipse's suggestions
+					 */
+					String soundName = "sounds/NormalMole.wav";   
+					AudioInputStream audioInputStream = null;
+					try {
+						audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+					} catch (UnsupportedAudioFileException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+					} catch (IOException e3) {
+						// TODO Auto-generated catch block
+						e3.printStackTrace();
+					}
+					Clip clip = null;
+					try {
+						clip = AudioSystem.getClip();
+					} catch (LineUnavailableException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					try {
+						clip.open(audioInputStream);
+					} catch (LineUnavailableException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					clip.start();
+					//*************************************************************End of taken code
 					points++; //increment points
 					int hole; //random hole for next mole to appear from
 					//loop to generate random hole location
@@ -103,7 +141,7 @@ public class MediumPlayScreen extends ScreenFrame implements ActionListener{
 	/**
 	 * This method determines a random placement of 2 moles
 	 */
-	private void MoleRandomizer() {
+	private void moleRandomizer() {
 		int m1; //2 random moles
 		int m2;
 		do {
@@ -112,7 +150,7 @@ public class MediumPlayScreen extends ScreenFrame implements ActionListener{
 		}while(m1 == m2);//while two of the values are the same continue randomizing until all moles are different
 		moles[m1].setUp(); //set the moles up
 		moles[m2].setUp();
-	}//end of MoleRandomizer method
+	}//end of moleRandomizer method
 
 	/**
 	 * This method is a timer for controlling the time limit of our game

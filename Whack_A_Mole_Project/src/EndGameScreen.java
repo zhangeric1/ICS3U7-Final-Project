@@ -2,9 +2,11 @@
  *  This is our screen that displays the end game message and allows the user to play again or return to the menu. Their current score is stored into a text file.
  */
 //import necessary packages
-import java.awt.*;
+import java.awt.*; 
 import java.awt.event.*;
 import java.io.*;
+
+import javax.sound.sampled.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -18,7 +20,41 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 	/**
 	 * Constructor for EndGameScreen
 	 */
-	EndGameScreen(){
+	public EndGameScreen(){
+		//*********************************************************************Start of taken code
+		/*This code plays a sound effect when the mole is hit. I took the code from 1st answer on:
+		 * https://stackoverflow.com/questions/15526255/best-way-to-get-sound-on-button-press-for-a-java-calculator
+		 * I edited it using Eclipse's suggestions
+		 */
+		String soundName = "sounds/EndGame.wav";   
+		AudioInputStream audioInputStream = null;
+		try {
+			audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+		} catch (UnsupportedAudioFileException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		} catch (IOException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		}
+		Clip clip = null;
+		try {
+			clip = AudioSystem.getClip();
+		} catch (LineUnavailableException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		try {
+			clip.open(audioInputStream);
+		} catch (LineUnavailableException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		clip.start();
+		//*************************************************************End of taken code
 		//set layout manager as null so we can manually place components
 		this.setLayout(null);
 		this.getContentPane().setBackground(BG_COLOR); //set background color
@@ -132,7 +168,7 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 	 * @param score Score to be checked
 	 * @return true if the score is a new high score, false otherwise
 	 */
-	public boolean checkNewHigh(String fileName, int score) {
+	private boolean checkNewHigh(String fileName, int score) {
 		String line; //line of input
 		try {
 			@SuppressWarnings("resource")

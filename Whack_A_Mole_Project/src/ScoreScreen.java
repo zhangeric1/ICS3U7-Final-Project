@@ -13,7 +13,7 @@ import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class ScoreScreen extends ScreenFrame implements ActionListener{
-	private static String easyFile = "scores/easyFile.txt", mediumFile = "scores/mediumFile.txt", hardFile = "scores/hardFile.txt"; //names of each text file
+	private static final String EASY_FILE = "scores/easyFile.txt", MEDIUM_FILE = "scores/mediumFile.txt", HARD_FILE = "scores/hardFile.txt"; //names of each text file
 	private ArrayList<Integer> easyScores, mediumScores, hardScores; //lists of scores from each text file
 	private JTable easyTable, mediumTable, hardTable; //tables to display scores
 	private JScrollPane easyScrollPane, mediumScrollPane, hardScrollPane; //Scroll panes allow each table to be scrolled through
@@ -25,9 +25,9 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 	//Constructor for ScoreScreen
 	public ScoreScreen(){
 		//array list of scores. Initialize them with method
-		easyScores = readFileIntoList(easyFile);
-		mediumScores = readFileIntoList(mediumFile);
-		hardScores = readFileIntoList(hardFile);
+		easyScores = readFileIntoList(EASY_FILE);
+		mediumScores = readFileIntoList(MEDIUM_FILE);
+		hardScores = readFileIntoList(HARD_FILE);
 		//tablePanel is a general JPanel to hold all tables
 		tablePanel = new JPanel();
 		tablePanel.setBackground(BG_COLOR);
@@ -136,17 +136,17 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		//Button pressed to clear easy scores
 		if(e.getSource() == jbtEasyClr) {
-			clearFile(easyFile);
+			clearFile(EASY_FILE);
 		}
 
 		//Button pressed to clear medium scores
 		else if(e.getSource() == jbtMediumClr) {
-			clearFile(mediumFile);
+			clearFile(MEDIUM_FILE);
 		}
 
 		//Button pressed to clear hard scores
 		else if(e.getSource() == jbtHardClr) {
-			clearFile(hardFile);
+			clearFile(HARD_FILE);
 		}
 
 		//button pressed to return to menu
@@ -249,7 +249,7 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 	 * @return name of text file
 	 */
 	public static String getEasyFileName() {
-		return easyFile;
+		return EASY_FILE;
 	}//end of getEasyFileName method
 
 	/**
@@ -257,7 +257,7 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 	 * @return name of text file
 	 */
 	public static String getMediumFileName() {
-		return mediumFile;
+		return MEDIUM_FILE;
 	}//end of getMediumFileName method
 
 	/**
@@ -265,7 +265,7 @@ public class ScoreScreen extends ScreenFrame implements ActionListener{
 	 * @return name of text file
 	 */
 	public static String getHardFileName() {
-		return hardFile;
+		return HARD_FILE;
 	} //end of getHardFileName method
 
 }
