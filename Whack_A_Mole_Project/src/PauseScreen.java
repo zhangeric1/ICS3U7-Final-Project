@@ -24,9 +24,9 @@ public class PauseScreen extends ScreenFrame implements ActionListener{
 		this.getContentPane().setBackground(BG_COLOR); //set background color of frame
 
 		//label to show some text
-		label = addCustomLabel("Paused", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 50));
+		label = addCustomLabel("Paused", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 150));
 		//Sets bounds of the label
-		label.setBounds(375, -200, this.getWidth() - 1, this.getHeight() - 1 );
+		label.setBounds(250, -100, this.getWidth() - 1, this.getHeight() - 1 );
 		this.add(label); //add label
 
 		//Get the time and score from the play screen
