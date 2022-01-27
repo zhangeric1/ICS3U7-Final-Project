@@ -1,5 +1,6 @@
 /**
- * This is our play screen for the medium difficulty The user can pause and return to menu using the pause button
+ * This class is the play screen for the Medium difficulty. It consists of a 3x4 grid of holes and a heading displaying the score and time remaining. 2 moles are
+ * visible in the grid: moles earn 1 point each. When the timer runs out or if the player quits the game, they are brought to a Game Over screen.
  */
 //import necessary packages
 import java.awt.*;

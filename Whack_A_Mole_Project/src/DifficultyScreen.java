@@ -1,6 +1,6 @@
 /**
- * This is our difficulty selection screen. After selecting a difficulty level, the user is moved into that game mode.
- * The user can also choose to move back to the main menu.
+ * This is our difficulty selection screen. After selecting a difficulty level, the user is moved into that game mode. The user can also choose 
+ * to move back to the main menu.
  */
 //import necessary packages
 import java.awt.*;

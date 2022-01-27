@@ -1,5 +1,7 @@
 /**
- * This is our hard play screen for the hard difficulty. The user can pause and return to menu using the pause button
+ * This class is the play screen for the Hard difficulty. It consists of a 4x4 grid of holes and a heading displaying the score and time remaining. 3 moles are
+ * visible in the grid: normal (brown) moles earn 1 point, super (blue) moles earn 2 points, and sabotage (red) moles take away 2 points. When the timer
+ * runs out or if the player quits the game, they are brought to a Game Over screen.
  */
 //import necessary packages
 import java.awt.*; 

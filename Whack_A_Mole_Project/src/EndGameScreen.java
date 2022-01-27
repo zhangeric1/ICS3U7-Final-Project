@@ -1,5 +1,5 @@
 /**
- *  This is our screen that displays the end game message and allows the user to play again or return to the menu. Their current score is stored into a text file.
+ *  This screen displays the end game message and score. The user can play again or return to the menu. Their current score is stored into a text file.
  */
 //import necessary packages
 import java.awt.*; 
@@ -16,18 +16,21 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 	private final Color ENDGAME_COLOR_FG = Color.blue, ENDGAME_COLOR_BG = Color.cyan; //constant colors of difficulty button foreground and background respectively
 	private final Font ENDGAME_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of difficulty buttons
 	public static int timeleft, points; //points and time left
-
+	private String soundName;
+	private AudioInputStream audioInputStream;
+	private Clip clip;
+	
 	/**
 	 * Constructor for EndGameScreen
 	 */
 	public EndGameScreen(){
 		//*********************************************************************Start of taken code
-		/*This code plays a sound effect when the mole is hit. I took the code from 1st answer on:
+		/*This code plays a sound effect when the player finishes the game. I took the code from 1st answer on:
 		 * https://stackoverflow.com/questions/15526255/best-way-to-get-sound-on-button-press-for-a-java-calculator
 		 * I edited it using Eclipse's suggestions
 		 */
-		String soundName = "sounds/EndGame.wav";   
-		AudioInputStream audioInputStream = null;
+		soundName = "sounds/EndGame.wav";   
+		audioInputStream = null;
 		try {
 			audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
 		} catch (UnsupportedAudioFileException e3) {
@@ -37,7 +40,7 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 			// TODO Auto-generated catch block
 			e3.printStackTrace();
 		}
-		Clip clip = null;
+		clip = null;
 		try {
 			clip = AudioSystem.getClip();
 		} catch (LineUnavailableException e2) {

@@ -1,5 +1,6 @@
 /**
- * This is our play screen for the easy difficulty. The user can pause and return to menu using the pause button
+ * This class is the play screen for the Easy difficulty. It consists of a 3x3 grid of holes and a heading displaying the score and time remaining. 1 mole is
+ * visible in the grid: moles earn 1 point each. When the timer runs out or if the player quits the game, they are brought to a Game Over screen.
  */
 import java.awt.*; 
 import java.awt.event.*;

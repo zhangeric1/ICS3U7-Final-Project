@@ -18,47 +18,53 @@ public class MenuScreen extends ScreenFrame implements ActionListener{
 	private JLabel heading, labelGif; //the heading label of the Main Menu and the label that will hold bgGif
 	private final Color MENU_COLOR_FG = Color.blue, MENU_COLOR_BG = Color.cyan; //constant colors of menu button foreground and background respectively
 	private final Font MENU_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of menu buttons
+	private static boolean opened = false; //this is used to determine if menu screen has been opened so that the menu song does not play again; initialized as false
+	//variables used for playing sound
+	private Clip menuClip;
+	private AudioInputStream audioInputStream;
+	private String soundName;
 
 	/**
 	 * Constructor for MenuScreen
 	 */
 	public MenuScreen(){	
-		//*********************************************************************Start of taken code
-		/*This code plays a sound effect when the mole is hit. I took the code from 1st answer on:
-		 * https://stackoverflow.com/questions/15526255/best-way-to-get-sound-on-button-press-for-a-java-calculator
-		 * I edited it using Eclipse's suggestions
-		 */
-		String soundName = "sounds/MainMenu.wav";   
-		AudioInputStream audioInputStream = null;
-		try {
-			audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
-		} catch (UnsupportedAudioFileException e3) {
-			// TODO Auto-generated catch block
-			e3.printStackTrace();
-		} catch (IOException e3) {
-			// TODO Auto-generated catch block
-			e3.printStackTrace();
+		if(!opened) {
+			opened = true; //set opened to true so that this block of code only executes once in the entire game.
+			//*********************************************************************Start of taken code
+			/*This code plays menu music. I took the code from 1st answer on:
+			 * https://stackoverflow.com/questions/15526255/best-way-to-get-sound-on-button-press-for-a-java-calculator
+			 * I edited it using Eclipse's suggestions
+			 */
+			soundName = "sounds/MainMenu.wav";   
+			audioInputStream = null;
+			try {
+				audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());
+			} catch (UnsupportedAudioFileException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			} catch (IOException e3) {
+				// TODO Auto-generated catch block
+				e3.printStackTrace();
+			}
+			menuClip = null;
+			try {
+				menuClip = AudioSystem.getClip();
+			} catch (LineUnavailableException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			try {
+				menuClip.open(audioInputStream);
+			} catch (LineUnavailableException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			menuClip.loop(Clip.LOOP_CONTINUOUSLY);//loops music continuously
+			//*************************************************************End of taken code
 		}
-		Clip clip = null;
-		try {
-			clip = AudioSystem.getClip();
-		} catch (LineUnavailableException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-		try {
-			clip.open(audioInputStream);
-		} catch (LineUnavailableException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		clip.loop(Clip.LOOP_CONTINUOUSLY);//loops music continuously
-		clip.start();
-		//*************************************************************End of taken code
-		
 		//set layout manager of JFrame as null so we can manually place buttons.
 		this.setLayout(null);
 		//set background color of JFrame
