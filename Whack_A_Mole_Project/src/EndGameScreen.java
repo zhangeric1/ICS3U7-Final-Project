@@ -174,7 +174,7 @@ public class EndGameScreen extends ScreenFrame implements ActionListener{
 	private boolean checkNewHigh(String fileName, int score) {
 		String line; //line of input
 		try {
-			@SuppressWarnings("resource")//I have to add this to get rid of warnings in this block of code
+			@SuppressWarnings("resource")
 			BufferedReader read = new BufferedReader(new FileReader(fileName));
 			line = read.readLine(); //read the first line
 			while(line != null) { //continue until end of file

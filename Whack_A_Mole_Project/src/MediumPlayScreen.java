@@ -128,7 +128,7 @@ public class MediumPlayScreen extends ScreenFrame implements ActionListener{
 					int hole; //random hole for next mole to appear from
 					//loop to generate random hole location
 					do {
-						hole = (int)(Math.random() * 9);
+						hole = (int)(Math.random() * 12);
 					}while(moles[hole].isUp); //keep generating random holes if the mole on that hole is already up (no duplicates)
 					moles[hole].setUp(); //set new mole up
 					moles[i].setDown(); //set hit mole down
